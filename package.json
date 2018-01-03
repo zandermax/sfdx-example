@@ -16,7 +16,7 @@
   "author": "Zander Maxwell",
   "license": "ISC",
   "dependencies": {
-    "sfdx-ez": "^1.0.4",
+    "sfdx-ez": "^1.0.5",
     "shelljs": "^0.7.8",
     "yargs": "^10.0.3"
   }
