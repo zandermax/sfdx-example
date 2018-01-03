@@ -41,12 +41,12 @@ exports.handler = argv => {
 
   const createOutput = dxez.create(argv)
   if (createOutput.stderr) {
-    console.error('\n' + config.get('stars') + 'ERROR creating scratch org' + config.get('stars'))
+    console.error('\n' + config.stars + 'ERROR creating scratch org' + config.stars)
   }
 
   const pushOutput = dxez.push(argv)
   if (pushOutput.stderr) {
-    console.error('\n' + config.get('stars') + 'ERROR pushing to new scratch org' + config.get('stars'))
+    console.error('\n' + config.stars + 'ERROR pushing to new scratch org' + config.stars)
     console.error(pushOutput.stderr)
   }
 }

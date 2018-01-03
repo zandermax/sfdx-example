@@ -34,7 +34,7 @@ exports.builder = yargs => {
 exports.handler = async argv => {
   argv.deployto = argv.pushto || argv.prodorgname
   if (!argv.deployto) {
-    console.error('\n' + config.get('stars') + 'ERROR: No org specified in which to deploy code.' + config.get('stars'))
+    console.error('\n' + config.stars + 'ERROR: No org specified in which to deploy code.' + config.stars)
     process.exit(1)
   }
 
@@ -42,7 +42,7 @@ exports.handler = async argv => {
   const convertOutput = await dxez.convert(argv)
   if (convertOutput.stderr) {
     if (!argv.quiet) {
-      console.error('\n' + config.get('stars') + 'ERROR: Code deployment failed.' + config.get('stars'))
+      console.error('\n' + config.stars + 'ERROR: Code deployment failed.' + config.stars)
     }
     process.exit(1)
   }
@@ -51,7 +51,7 @@ exports.handler = async argv => {
   const deployOutput = await dxez.deploy(argv)
   if (deployOutput.stderr) {
     if (!argv.quiet) {
-      console.error('\n' + config.get('stars') + 'ERROR: Code deployment failed.' + config.get('stars'))
+      console.error('\n' + config.stars + 'ERROR: Code deployment failed.' + config.stars)
     }
     process.exit(1)
   } else {
