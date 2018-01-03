@@ -1,0 +1,2392 @@
+=== force:limits:api:display
+Usage: sfdx force:limits:api:display [-u <string>] [--json] [--loglevel <string>] 
+
+display current org’s limits
+
+Flags:
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+When you execute this command in a project, it provides limit information for your default scratch org.
+
+Examples:
+   $ sfdx force:limits:api:display
+   $ sfdx force:limits:api:display -u me@my.org
+
+
+=== force:lightning:app:create
+Usage: sfdx force:lightning:app:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create a Lightning app
+
+Flags:
+ -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -n, --appname APPNAME        (required) name of the generated Lightning app
+ -d, --outputdir OUTPUTDIR    folder for saving the created files
+ -t, --template TEMPLATE      template to use for file creation
+                              (DefaultLightningApp*)
+ --json                       JSON output
+ --loglevel LOGLEVEL          logging level for this command invocation
+                              (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:lightning:app:create -n myapp
+   $ sfdx force:lightning:app:create -n myapp -d lightning
+
+
+=== force:data:bulk:delete
+Usage: sfdx force:data:bulk:delete -s <string> -f <file> [-w <minutes>] [-u <string>] [--json] [--loglevel <string>] 
+
+bulk delete records from a csv file
+
+Flags:
+ -f, --csvfile CSVFILE                (required) the path to the CSV file
+                                      containing the ids of the records to
+                                      delete
+ -s, --sobjecttype SOBJECTTYPE        (required) the sObject type of the records
+                                      you’re deleting
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -w, --wait WAIT                      the number of minutes to wait for the
+                                      command to complete before displaying the
+                                      results
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+The file must be a CSV file with only one column: "Id".
+One job can contain many batches, depending on the length of the CSV file.
+Returns a job ID and a batch ID. Use these IDs to check job status with data:bulk:status.
+
+Examples:
+   $ sfdx force:data:bulk:delete -s Account -f ./path/to/file.csv
+   $ sfdx force:data:bulk:delete -s MyObject__c -f ./path/to/file.csv
+
+
+=== force:data:bulk:status
+Usage: sfdx force:data:bulk:status -i <id> [-b <id>] [-u <string>] [--json] [--loglevel <string>] 
+
+view the status of a bulk data load job or batch
+
+Flags:
+ -b, --batchid BATCHID                the ID of the batch whose status you want
+                                      to view
+ -i, --jobid JOBID                    (required) the ID of the job you want to
+                                      view or of the job whose batch you want to
+                                      view
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:data:bulk:status -i 750xx000000005sAAA
+   $ sfdx force:data:bulk:status -i 750xx000000005sAAA -b 751xx000000005nAAA
+
+
+=== force:data:bulk:upsert
+Usage: sfdx force:data:bulk:upsert -s <string> -f <file> [-i <id>] [-w <minutes>] [-u <string>] [--json] [--loglevel <string>] 
+
+bulk upsert records from a CSV file
+
+Flags:
+ -f, --csvfile CSVFILE                (required) the path to the CSV file that
+                                      defines the records to upsert
+ -i, --externalid EXTERNALID          the column name of the external ID; if not
+                                      provided, an arbitrary ID is used
+ -s, --sobjecttype SOBJECTTYPE        (required) the sObject type of the records
+                                      you want to upsert
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -w, --wait WAIT                      the number of minutes to wait for the
+                                      command to complete before displaying the
+                                      results
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Inserts or updates records from a CSV file. 
+One job can contain many batches, depending on the length of the CSV file.
+Returns a job ID and a batch ID. Use these IDs to check job status with data:bulk:status.
+
+For information about formatting your CSV file, see "Prepare CSV Files" in the Bulk API Developer Guide.
+
+Examples:
+   $ sfdx force:data:bulk:upsert -s MyObject__c -f ./path/to/file.csv -i MyField__c
+   $ sfdx force:data:bulk:upsert -s MyObject__c -f ./path/to/file.csv -i Id -w 2
+
+
+=== force:apex:class:create
+Usage: sfdx force:apex:class:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create an Apex class
+
+Flags:
+ -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -n, --classname CLASSNAME    (required) name of the generated Apex class
+ -d, --outputdir OUTPUTDIR    folder for saving the created files
+ -t, --template TEMPLATE      template to use for file creation
+                              (DefaultApexClass*,ApexException,ApexUnitTest,InboundEmailService)
+ --json                       JSON output
+ --loglevel LOGLEVEL          logging level for this command invocation
+                              (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:apex:class:create -n MyClass
+   $ sfdx force:apex:class:create -n MyClass -d classes
+
+
+=== force:doc:commands:display
+Usage: sfdx force:doc:commands:display [--json] [--loglevel <string>] 
+
+display help for force commands
+
+Flags:
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Displays --help output for commands in the force namespace.
+To display more details about the commands’ parameters, include the --json flag.
+
+
+=== force:doc:commands:list
+Usage: sfdx force:doc:commands:list [-u] [--json] [--loglevel <string>] 
+
+list the force commands
+
+Flags:
+ -u, --usage          list only docopts usage strings
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Displays a list of commands in the force namespace and their descriptions.
+
+
+=== force:visualforce:component:create
+Usage: sfdx force:visualforce:component:create -n <string> -l <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create a Visualforce component
+
+Flags:
+ -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -n, --componentname COMPONENTNAME  (required) name of the generated Visualforce
+                                    component
+ -l, --label LABEL                  (required) Visualforce component label
+ -d, --outputdir OUTPUTDIR          folder for saving the created files
+ -t, --template TEMPLATE            template to use for file creation
+                                    (DefaultVFComponent*)
+ --json                             JSON output
+ --loglevel LOGLEVEL                logging level for this command invocation
+                                    (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+Name and label are required.
+
+Examples:
+   $ sfdx force:visualforce:component:create -n mycomponent -l mylabel
+   $ sfdx force:visualforce:component:create -n mycomponent -l mylabel -d components
+
+
+=== force:lightning:component:create
+Usage: sfdx force:lightning:component:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create a Lightning component
+
+Flags:
+ -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -n, --componentname COMPONENTNAME  (required) name of the generated Lightning
+                                    component
+ -d, --outputdir OUTPUTDIR          folder for saving the created files
+ -t, --template TEMPLATE            template to use for file creation
+                                    (DefaultLightningCmp*)
+ --json                             JSON output
+ --loglevel LOGLEVEL                logging level for this command invocation
+                                    (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:lightning:component:create -n mycomponent
+   $ sfdx force:lightning:component:create -n mycomponent -d lightning
+
+
+=== force:mdapi:convert
+Usage: sfdx force:mdapi:convert -r <directory> [-d <directory>] [--json] [--loglevel <string>] 
+
+convert Metadata API source into the Salesforce DX source format
+
+Flags:
+ -d, --outputdir OUTPUTDIR  the output directory to store the sfdx source
+ -r, --rootdir ROOTDIR      (required) the root directory containing the
+                            Metadata API source
+ --json                     format output as json
+ --loglevel LOGLEVEL        logging level for this command invocation
+                            (error*,trace,debug,info,warn,fatal)
+
+To work with source that you retrieved via Metadata API using the Salesforce DX tools, convert the source to the Salesforce DX format using "sfdx force:mdapi:convert".
+
+To convert the source back to the Metadata API format, so that you can deploy it using "sfdx force:mdapi:deploy", run "sfdx force:source:convert".
+
+Examples:
+   $ sfdx force:mdapi:convert -r <path to source>
+   $ sfdx force:mdapi:convert -r <path to source> -d <path to outputdir>
+
+
+=== force:source:convert
+Usage: sfdx force:source:convert [-r <directory>] [-d <directory>] [-n <string>] [--json] [--loglevel <string>] 
+
+convert Salesforce DX source into the Metadata API source format
+
+Flags:
+ -d, --outputdir OUTPUTDIR      the output directory to export the Metadata API
+                                source to
+ -n, --packagename PACKAGENAME  the name of the package to associate with the
+                                Metadata API source
+ -r, --rootdir ROOTDIR          the source directory for the source to be
+                                converted
+ --json                         format output as json
+ --loglevel LOGLEVEL            logging level for this command invocation
+                                (error*,trace,debug,info,warn,fatal)
+
+To convert Salesforce DX–formatted source into a format that you can deploy using Metadata API, run "sfdx force:source:convert". Then deploy the source using "sfdx force:mdapi:deploy".
+
+To convert Metadata API–formatted source into the Salesforce DX format, run "sfdx force:mdapi:convert".
+
+Examples:
+   $ sfdx force:source:convert -r <path to source>
+   $ sfdx force:source:convert -r <path to source> -d <path to output dir>
+
+
+=== force:org:create
+Usage: sfdx force:org:create name=value... [-f <filepath>] [-n] [-c] [-i <string>] [-s] [-a <string>] [-w <minutes>] [-d <number>] [-v <string>] [--json] [--loglevel <string>] 
+
+create a scratch org
+
+Flags:
+ -i, --clientid CLIENTID                          connected app consumer key
+ -f, --definitionfile DEFINITIONFILE              path to a scratch org
+                                                  definition file
+ -d, --durationdays DURATIONDAYS                  duration of the scratch org
+                                                  (in days) (default:7, min:1,
+                                                  max:30)
+ -c, --noancestors                                do not include
+                                                  second-generation package
+                                                  ancestors in the scratch org
+ -n, --nonamespace                                creates the scratch org with
+                                                  no namespace
+ -a, --setalias SETALIAS                          set an alias for for the
+                                                  created scratch org
+ -s, --setdefaultusername                         set the created org as the
+                                                  default username
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ -w, --wait WAIT                                  the streaming client socket
+                                                  timeout (in minutes)
+                                                  (default:6, min:2)
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+To set up a connected app for your new scratch org, specify the value that was returned when you created a connected app in your Dev Hub org as --clientid.
+
+Examples:
+   $ sfdx force:org:create -f config/enterprise-scratch-def.json -a TestOrg1
+   $ sfdx force:org:create -a MyDevOrg -s -v me@myhub.org edition=Developer
+   $ sfdx force:org:create -f config/enterprise-scratch-def.json -a OrgWithOverrides username=testuser1@mycompany.org
+
+
+=== force:package2:create
+Usage: sfdx force:package2:create -n <string> [-o <string>] [-d <string>] [-e] [-v <string>] [--json] [--loglevel <string>] 
+
+create a second-generation package
+
+Flags:
+ -o, --containeroptions CONTAINEROPTIONS          [*Managed | Unlocked | Locked]
+                                                  container options for the
+                                                  package
+                                                  (Managed=DeveloperManagedSubscriberManaged,
+                                                  Unlocked=DeveloperControlledSubscriberEditable,
+                                                  Locked=DeveloperControlledSubscriberLocked)
+ -d, --description DESCRIPTION                    package description
+ -n, --name NAME                                  (required) package name
+ -e, --nonamespace                                creates the package with no
+                                                  namespace; available only for
+                                                  developer-controlled packages.
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+First, use this command to create a second-generation package. Then create a package version.
+
+Examples:
+   $ sfdx force:package2:create -n PackageName -d 'My New Package' -o Locked
+
+Run 'sfdx force:package2:list' to list all second-generation packages in the Dev Hub org.
+
+
+=== force:user:create
+Usage: sfdx force:user:create name=value... [-f <filepath>] [-a <string>] [-u <string>] [-v <string>] [--json] [--loglevel <string>] 
+
+create a user for a scratch org
+
+Flags:
+ -f, --definitionfile DEFINITIONFILE              file path to a user definition
+ -a, --setalias SETALIAS                          set an alias for the created
+                                                  username to reference within
+                                                  the CLI
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ -u, --targetusername TARGETUSERNAME              username or alias for the
+                                                  target org; overrides default
+                                                  target org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+Create a user for a scratch org, optionally setting an alias for use by the CLI, assigning permission sets (e.g., permsets=ps1,ps2), generating a password (e.g., generatepassword=true), and setting User sObject fields.
+
+Examples:
+   $ sfdx force:user:create
+   $ sfdx force:user:create -a testuser1 -f config/project-user-def.json
+   $ sfdx force:user:create username=testuser1@my.org email=me@my.org permsets=DreamHouse
+   $ sfdx force:user:create -f config/project-user-def.json email=me@my.org generatepassword=true
+
+
+=== force:project:create
+Usage: sfdx force:project:create -n <string> [-t <string>] [-d <string>] [-s <string>] [-p <string>] [--json] [--loglevel <string>] 
+
+create a new SFDX project
+
+Flags:
+ -p, --defaultpackagedir DEFAULTPACKAGEDIR  default package directory name
+                                            (force-app*)
+ -s, --namespace NAMESPACE                  project associated namespace
+ -d, --outputdir OUTPUTDIR                  folder for saving the created files
+ -n, --projectname PROJECTNAME              (required) name of the generated
+                                            project
+ -t, --template TEMPLATE                    template to use for file creation
+                                            (Defaultsfdx-project.json*)
+ --json                                     JSON output
+ --loglevel LOGLEVEL                        logging level for this command
+                                            invocation
+                                            (error*,trace,debug,info,warn,fatal)
+
+Default values are used if the template, namespace, defaultpackagedir, and outputdir aren’t supplied.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:project:create --projectname mywork
+   $ sfdx force:project:create --projectname mywork --defaultpackagedir myapp
+
+
+=== force:org:delete
+Usage: sfdx force:org:delete -u <string> [-p] [-v <string>] [--json] [--loglevel <string>] 
+
+mark a scratch org for deletion
+
+Flags:
+ -p, --noprompt                                   no prompt to confirm deletion
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ -u, --targetusername TARGETUSERNAME              (required) username or alias
+                                                  for the target org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+To mark the org for deletion without being prompted to confirm, specify --noprompt.
+
+Examples:
+   $ sfdx force:org:delete -u me@my.org
+   $ sfdx force:org:delete -u MyOrgAlias -p
+
+
+=== force:mdapi:deploy
+Usage: sfdx force:mdapi:deploy (-c | -i <id>) (-d <directory> | -f <filepath>) [-w <minutes>] [-l <string>] [-r <string>...] [-e <boolean>] [-o] [-g] [-u <string>] [--json] [--loglevel <string>] [--verbose] 
+
+deploy metadata to an org using Metadata API
+
+Flags:
+ -c, --checkonly                        validate deploy but don’t save to the
+                                        org (default:false)
+ -d, --deploydir DEPLOYDIR              root of directory tree of files to
+                                        deploy
+ -o, --ignoreerrors                     ignore any errors and do not roll back
+                                        deployment (default:false)
+ -g, --ignorewarnings                   whether a warning will allow a
+                                        deployment to complete successfully
+                                        (default:false)
+ -i, --jobid JOBID                      WARNING: The flag "jobid" has been
+                                        deprecated and will be removed in
+                                        v41.01.0 or later. Instead, use "sfdx
+                                        force:mdapi:deploy:report -i <jobId>".
+ -e, --rollbackonerror ROLLBACKONERROR  WARNING: The flag "rollbackonerror" has
+                                        been deprecated and will be removed in
+                                        v41.01.0 or later. Instead, use
+                                        "ignoreerrors".
+ -r, --runtests RUNTESTS                tests to run if --testlevel
+                                        RunSpecifiedTests
+ -u, --targetusername TARGETUSERNAME    username or alias for the target org;
+                                        overrides default target org
+ -l, --testlevel TESTLEVEL              deployment testing level
+                                        (NoTestRun,RunSpecifiedTests,RunLocalTests,RunAllTestsInOrg)
+ -w, --wait WAIT                        wait time for command to finish in
+                                        minutes (default: 0)
+ -f, --zipfile ZIPFILE                  path to .zip file of metadata to deploy
+ --json                                 format output as json
+ --loglevel LOGLEVEL                    logging level for this command
+                                        invocation
+                                        (error*,trace,debug,info,warn,fatal)
+ --verbose                              verbose output of deploy results
+
+Specify the location of the files to deploy as a .zip file or by the root of the directory tree containing the files. To check the status of a deployment, specify its job ID.
+
+The default value of --rollbackonerror is true, but the corresponding parameter in the Metadata API deploy() call defaults to false.
+
+
+=== force:mdapi:deploy:report
+Usage: sfdx force:mdapi:deploy:report [-w <minutes>] [-i <id>] [-u <string>] [--json] [--loglevel <string>] [--verbose] 
+
+check the status of a metadata deployment
+
+Flags:
+ -i, --jobid JOBID                    job ID of the deployment you want to check
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -w, --wait WAIT                      wait time for command to finish in minutes
+                                      (default: 0)
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+ --verbose                            verbose output of deploy results
+
+Specify the job ID for the deploy you want to check. You can also specify a wait time (minutes) to check for updates to the deploy status.
+
+
+=== force:org:display
+Usage: sfdx force:org:display [-u <string>] [--json] [--loglevel <string>] [--verbose] 
+
+get org description
+
+Flags:
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+ --verbose                            emit additional command output to stdout
+
+Output includes your access token, client ID, connected status, org ID, instance URL, username, and alias, if applicable. Use --verbose to include the SFDX auth URL.
+
+Examples:
+   $ sfdx force:org:display
+   $ sfdx force:org:display -u me@my.org
+   $ sfdx force:org:display -u TestOrg1 --json
+   $ sfdx force:org:display -u TestOrg1 --json > tmp/MyOrgDesc.json
+
+
+=== force:user:display
+Usage: sfdx force:user:display [-u <string>] [-v <string>] [--json] [--loglevel <string>] 
+
+displays information about a user of a scratch org
+
+Flags:
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ -u, --targetusername TARGETUSERNAME              username or alias for the
+                                                  target org; overrides default
+                                                  target org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+Output includes the profile name, org ID, access token, instance URL, login URL, and alias if applicable.
+Examples:
+   $ sfdx force:user:display
+   $ sfdx force:user:display -u me@my.org --json
+
+
+=== force:lightning:event:create
+Usage: sfdx force:lightning:event:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create a Lightning event
+
+Flags:
+ -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -n, --eventname EVENTNAME    (required) name of the generated Lightning event
+ -d, --outputdir OUTPUTDIR    folder for saving the created files
+ -t, --template TEMPLATE      template to use for file creation
+                              (DefaultLightningEvt*)
+ --json                       JSON output
+ --loglevel LOGLEVEL          logging level for this command invocation
+                              (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:lightning:event:create -n myevent
+   $ sfdx force:lightning:event:create -n myevent -d lightning
+
+
+=== force:apex:execute
+Usage: sfdx force:apex:execute [-f <file>] [-u <string>] [--json] [--loglevel <string>] 
+
+execute anonymous Apex code
+
+Flags:
+ -f, --apexcodefile APEXCODEFILE      path to a local file containing Apex code
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Executes one or more lines of Apex code, or executes the code in a local file.
+Before you enter code, run this command with no parameters to get a prompt.
+From the prompt, all commands are executed in a single execute anonymous request.
+For more information, see "Anonymous Blocks" in the Apex Developer Guide.
+
+Examples:
+   $ sfdx force:apex:execute -f ~/test.apex
+
+   $ sfdx force:apex:execute 
+   >> Start typing Apex code. Press the Enter key after each line, 
+   >> then press CTRL+D when finished.
+
+
+=== force:config:get
+Usage: sfdx force:config:get name=value... [--json] [--loglevel <string>] [--verbose] 
+
+get config var values for given names
+
+Flags:
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+ --verbose            emit additional command output to stdout
+
+To see your default scratch org username, include "defaultusername".
+To see your default Dev Hub, include "defaultdevhubusername".
+To see your default instance URL, include "instanceUrl".
+To see the locations where your values are set, include the --verbose flag.
+
+Examples:
+   $ sfdx force:config:get defaultusername
+   $ sfdx force:config:get defaultusername defaultdevhubusername instanceUrl
+   $ sfdx force:config:get defaultusername defaultdevhubusername --verbose
+
+
+=== force:package:install
+Usage: sfdx force:package:install -i <id> [-w <minutes>] [-k <string>] [-p <minutes>] [-u <string>] [--json] [--loglevel <string>] 
+
+install a package in the target org
+
+Flags:
+ -i, --id ID                            (required) ID of the package version to
+                                        install (starts with 04t)
+ -k, --installationkey INSTALLATIONKEY  installation key for key-protected
+                                        package (default: null)
+ -p, --publishwait PUBLISHWAIT          number of minutes to wait for subscriber
+                                        package version ID to become available
+                                        in the target org
+ -u, --targetusername TARGETUSERNAME    username or alias for the target org;
+                                        overrides default target org
+ -w, --wait WAIT                        number of minutes to wait for
+                                        installation status
+ --json                                 format output as json
+ --loglevel LOGLEVEL                    logging level for this command
+                                        invocation
+                                        (error*,trace,debug,info,warn,fatal)
+
+Supply the ID of the package version you want to install. Installs to the default username org unless you supply the username for a different target org.
+
+Examples:
+   $ sfdx force:package:install -i 04t6A0000004eytQAA
+   $ sfdx force:package:install -i 04t6A0000004eytQAA -u me@my.org
+
+
+=== force:package:install:get
+Usage: sfdx force:package:install:get -i <id> [-u <string>] [--json] [--loglevel <string>] 
+
+retrieve the status of a package installation request
+
+Flags:
+ -i, --requestid REQUESTID            (required) ID of the package install
+                                      request you want to check
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Displays the status of a package install request.
+
+
+=== force:package:installed:list
+Usage: sfdx force:package:installed:list [-u <string>] [--json] [--loglevel <string>] 
+
+list the org’s installed packages
+
+Flags:
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Lists all packages installed in the target org.
+
+
+=== force:lightning:interface:create
+Usage: sfdx force:lightning:interface:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create a Lightning interface
+
+Flags:
+ -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -n, --interfacename INTERFACENAME  (required) name of the generated Lightning
+                                    interface
+ -d, --outputdir OUTPUTDIR          folder for saving the created files
+ -t, --template TEMPLATE            template to use for file creation
+                                    (DefaultLightningIntf*)
+ --json                             JSON output
+ --loglevel LOGLEVEL                logging level for this command invocation
+                                    (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:lightning:interface:create -n myinterface
+   $ sfdx force:lightning:interface:create -n myinterface -d lightning
+
+
+=== force:auth:jwt:grant
+Usage: sfdx force:auth:jwt:grant -u <string> -f <filepath> -i <string> [-r <url>] [-d] [-s] [-a <string>] [--json] [--loglevel <string>] 
+
+authorize an org using the JWT flow
+
+Flags:
+ -i, --clientid CLIENTID         (required) OAuth client ID (sometimes called
+                                 the consumer key)
+ -r, --instanceurl INSTANCEURL   the login URL of the instance the org lives on
+ -f, --jwtkeyfile JWTKEYFILE     (required) path to a file containing the
+                                 private key
+ -a, --setalias SETALIAS         set an alias for the authenticated org
+ -d, --setdefaultdevhubusername  set the authenticated org as the default dev
+                                 hub org for scratch org creation
+ -s, --setdefaultusername        set the authenticated org as the default
+                                 username that all commands run against
+ -u, --username USERNAME         (required) authentication username
+ --json                          format output as json
+ --loglevel LOGLEVEL             logging level for this command invocation
+                                 (error*,trace,debug,info,warn,fatal)
+
+Authorizes a Salesforce org using a private key file that has been uploaded to a personal connected app.
+
+Examples:
+   $ sfdx force:auth:jwt:grant -u me@my.org -f <path to jwt key file> -i <OAuth client id>
+   $ sfdx force:auth:jwt:grant -u me@my.org -f <path to jwt key file> -i <OAuth client id> -s -a MyDefaultOrg
+
+
+=== force:lightning:lint
+Usage: sfdx force:lightning:lint PATH 
+
+analyse (lint) Lightning component code
+
+Flags:
+ -i, --ignore IGNORE  pattern used to ignore some folders
+ -j, --json           format output as JSON
+ --config CONFIG      path to a custom ESLint configuration file
+ --exit               exit with error code 1 if there are lint issues
+ --files FILES        pattern used to include specific files
+ --verbose            report warnings in addition to errors
+
+Examples: 
+   $ sfdx force:lightning:lint ./path/to/be/linted/
+   $ heroku lightning:lint ./path/to/be/linted/
+
+
+=== force:alias:list
+Usage: sfdx force:alias:list [--json] [--loglevel <string>] 
+
+list username aliases for the Salesforce CLI
+
+Flags:
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Example: 
+   $ sfdx force:alias:list
+
+
+=== force:config:list
+Usage: sfdx force:config:list [--json] [--loglevel <string>] 
+
+list config vars for the Salesforce CLI
+
+Flags:
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Lists the config variables that the Salesforce CLI uses for various commands and tasks.
+
+
+=== force:org:list
+Usage: sfdx force:org:list [--all] [--clean] [-p] [--json] [--loglevel <string>] 
+
+list all orgs you’ve created or authenticated to
+
+Flags:
+ -p, --noprompt       do not prompt for confirmation
+ --all                include expired, deleted, and unknown-status scratch orgs
+ --clean              remove all local org authorizations for non-active orgs
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:org:list
+   $ sfdx force:org:list --verbose --json
+   $ sfdx force:org:list --verbose --json > tmp/MyOrgList.json
+
+
+=== force:package2:list
+Usage: sfdx force:package2:list [-v <string>] [--json] [--loglevel <string>] 
+
+list all second-generation packages in the Dev Hub org
+
+Flags:
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+You can view the namespace, IDs, and other details for each package.
+
+
+=== force:user:list
+Usage: sfdx force:user:list [-u <string>] [-v <string>] [--json] [--loglevel <string>] 
+
+lists all users of a scratch org
+
+Flags:
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ -u, --targetusername TARGETUSERNAME              username or alias for the
+                                                  target org; overrides default
+                                                  target org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+The original scratch org admin is marked with "(A)"
+Examples:
+   $ sfdx force:user:list
+   $ sfdx force:user:list -u me@my.org --json
+   $ sfdx force:user:list --json > tmp/MyUserList.json
+
+
+=== force:apex:log:get
+Usage: sfdx force:apex:log:get -i <id> [-u <string>] [--json] [--loglevel <string>] 
+
+fetch a debug log
+
+Flags:
+ -i, --logid LOGID                    (required) ID of the log to display
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+When you execute this command in a project, it fetches the specified log from your default scratch org.To get the IDs for your debug logs, run "sfdx force:apex:log:list".
+
+Examples:
+   $ sfdx force:apex:log:get -i <log id>
+   $ sfdx force:apex:log:get -i <log id> -u me@my.org
+
+
+=== force:apex:log:list
+Usage: sfdx force:apex:log:list [-u <string>] [--json] [--loglevel <string>] 
+
+list debug logs
+
+Flags:
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+When you execute this command in a project, it lists the log IDs for your default scratch org.
+
+Examples:
+   $ sfdx force:apex:log:list
+   $ sfdx force:apex:log:list -u me@my.org
+
+
+=== force:org:open
+Usage: sfdx force:org:open [-p <string>] [-r] [-u <string>] [--json] [--loglevel <string>] 
+
+open an org in your browser
+
+Flags:
+ -p, --path PATH                      navigation URL path
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -r, --urlonly                        display navigation URL, but don’t launch
+                                      browser
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Opens your default scratch org, or another org that you specify.
+
+To open a specific page, specify the portion of the URL after "yourInstance.salesforce.com/" as --path. 
+For example, specify "--path one/one.app" to open Lightning Experience, or specify "--path /apex/YourPage" to open a Visualforce page.
+
+To generate a URL but not launch your browser, specify --urlonly.
+
+Examples:
+  $ sfdx force:org:open
+  $ sfdx force:org:open -u me@my.org
+  $ sfdx force:org:open -u MyTestOrg1
+  $ sfdx force:org:open -r -p one/one.app
+
+
+=== force:source:open
+Usage: sfdx force:source:open -f <file> [-r] [-u <string>] [--json] [--loglevel <string>] 
+
+edit a Lightning Page with Lightning App Builder
+
+Flags:
+ -f, --sourcefile SOURCEFILE          (required) file to edit
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -r, --urlonly                        generate a navigation URL; don’t launch
+                                      the editor
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+If Force.com IDE 2 is installed, the file opens in an embedded browser within the IDE. If Force.com IDE 2 isn’t installed, the file opens in your default browser.
+If no browser-based editor is available for the selected file, this command opens your org’s home page.
+To generate a URL for the browser-based editor but not open the editor, use --urlonly.
+
+Examples:
+   $ sfdx force:source:open -f Property_Record_Page.flexipage-meta.xml
+   $ sfdx force:source:open -f Property_Record_Page.flexipage-meta.xml -r
+
+
+=== force:visualforce:page:create
+Usage: sfdx force:visualforce:page:create -n <string> -l <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create a Visualforce page
+
+Flags:
+ -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -l, --label LABEL            (required) Visualforce page label
+ -d, --outputdir OUTPUTDIR    folder for saving the created files
+ -n, --pagename PAGENAME      (required) name of the generated Visualforce page
+ -t, --template TEMPLATE      template to use for file creation (DefaultVFPage*)
+ --json                       JSON output
+ --loglevel LOGLEVEL          logging level for this command invocation
+                              (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+Name and label are required.
+
+Examples:
+   $ sfdx force:visualforce:page:create -n mypage -l mylabel
+   $ sfdx force:visualforce:page:create -n mypage -l mylabel -d pages
+
+
+=== force:user:password:generate
+Usage: sfdx force:user:password:generate [-o <string>...] [-u <string>] [-v <string>] [--json] [--loglevel <string>] 
+
+generate a password for scratch org users
+
+Flags:
+ -o, --onbehalfof ONBEHALFOF                      comma-separated list of
+                                                  usernames for which to
+                                                  generate passwords
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ -u, --targetusername TARGETUSERNAME              username or alias for the
+                                                  target org; overrides default
+                                                  target org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+Generates and sets a random password for one or more scratch org users.
+
+If you haven’t set a default Dev Hub, or if your scratch org isn’t associated with your default Dev Hub, --targetdevhubusername is required.
+
+To see a password that was previously generated, run "sfdx force:user:display".
+
+Examples:
+   $ sfdx force:user:password:generate
+   $ sfdx force:user:password:generate -u me@my.org --json
+   $ sfdx force:user:password:generate -o user1@my.org,user2@my.org,user3@my.org
+
+
+=== force:user:permset:assign
+Usage: sfdx force:user:permset:assign -n <string> [-o <string>...] [-u <string>] [--json] [--loglevel <string>] 
+
+assign a permission set to one or more users of an org
+
+Flags:
+ -o, --onbehalfof ONBEHALFOF          comma-separated list of usernames or
+                                      aliases to assign the permission set to
+ -n, --permsetname PERMSETNAME        (required) the name of the permission set
+                                      to assign
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Defaults to the defaultusername.
+
+Examples:
+   $ sfdx force:user:permset:assign -n DreamHouse
+   $ sfdx force:user:permset:assign -n DreamHouse -u me@my.org
+   $ sfdx force:user:permset:assign -n DreamHouse -o user1@my.org,user2,user3
+
+
+=== force:source:pull
+Usage: sfdx force:source:pull [-w <minutes>] [-f] [-u <string>] [--json] [--loglevel <string>] 
+
+pull source from the scratch org to the project
+
+Flags:
+ -f, --forceoverwrite                 ignore conflict warnings and overwrite
+                                      changes to the project
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -w, --wait WAIT                      wait time for command to finish in minutes
+                                      (default: 33) (default:33, min:1)
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+If the command detects a conflict, it displays the conflicts but does not complete the process. After reviewing the conflict, rerun the command with the --forceoverwrite parameter.
+
+
+=== force:source:push
+Usage: sfdx force:source:push [-f] [-g] [-w <minutes>] [-u <string>] [--json] [--loglevel <string>] 
+
+push source to an org from the project
+
+Flags:
+ -f, --forceoverwrite                 ignore conflict warnings and overwrite
+                                      changes to scratch org
+ -g, --ignorewarnings                 deploy changes even if warnings are
+                                      generated
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -w, --wait WAIT                      wait time for command to finish in minutes
+                                      (default: 33) (default:33, min:1)
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+If the command detects a conflict, it displays the conflicts but does not complete the process. After reviewing the conflict, rerun the command with the --forceoverwrite parameter.
+
+
+=== force:data:record:create
+Usage: sfdx force:data:record:create -s <string> -v <string> [-t] [-u <string>] [--json] [--loglevel <string>] 
+
+create a record
+
+Flags:
+ -s, --sobjecttype SOBJECTTYPE        (required) the type of the record you’re
+                                      creating
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -t, --usetoolingapi                  create the record with tooling api
+ -v, --values VALUES                  (required) the <fieldName>=<value> pairs
+                                      you’re creating
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+The format of a field-value pair is <fieldName>=<value>.
+Enclose all field-value pairs in one set of double quotation marks, delimited by spaces.
+Enclose values that contain spaces in single quotes.
+
+Examples:
+   $ sfdx force:data:record:create -s Account -v "Name=Acme"
+   $ sfdx force:data:record:create -s Account -v "Name='Universal Containers'"
+   $ sfdx force:data:record:create -s Account -v "Name='Universal Containers' Website=www.example.com"
+   $ sfdx force:data:record:create -t -s TraceFlag -v "DebugLevelId=7dl170000008U36AAE StartDate=2017-12-01T00:26:04.000+0000 ExpirationDate=2017-12-01T00:56:04.000+0000 LogType=CLASS_TRACING TracedEntityId=01p17000000R6bLAAS"
+
+
+=== force:data:record:delete
+Usage: sfdx force:data:record:delete -s <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>] 
+
+delete a record
+
+Flags:
+ -i, --sobjectid SOBJECTID            the ID of the record you’re deleting
+ -s, --sobjecttype SOBJECTTYPE        (required) the type of the record you’re
+                                      deleting
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -t, --usetoolingapi                  delete the record with Tooling API
+ -w, --where WHERE                    a list of <fieldName>=<value> pairs to
+                                      search for
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.
+The format of a field-value pair is <fieldName>=<value>.
+Enclose all field-value pairs in one set of double quotation marks, delimited by spaces.
+Enclose values that contain spaces in single quotes.
+
+Examples:
+   $ sfdx force:data:record:delete -s Account -i 001D000000Kv3dl
+   $ sfdx force:data:record:delete -s Account -w "Name=Acme"
+   $ sfdx force:data:record:delete -s Account -w "Name='Universal Containers'"
+   $ sfdx force:data:record:delete -s Account -w "Name='Universal Containers' Phone='(123) 456-7890'"
+   $ sfdx force:data:record:delete -t -s TraceFlag -i 7tf170000009cU6AAI
+
+
+=== force:data:record:get
+Usage: sfdx force:data:record:get -s <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>] 
+
+view a record
+
+Flags:
+ -i, --sobjectid SOBJECTID            the ID of the record you’re retrieving
+ -s, --sobjecttype SOBJECTTYPE        (required) the type of the record you’re
+                                      retrieving
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -t, --usetoolingapi                  retrieve the record with Tooling API
+ -w, --where WHERE                    a list of <fieldName>=<value> pairs to
+                                      search for
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.
+The format of a field-value pair is <fieldName>=<value>.
+Enclose all field-value pairs in one set of double quotation marks, delimited by spaces.
+Enclose values that contain spaces in single quotes.
+
+Examples:
+   $ sfdx force:data:record:get -s Account -i 001D000000Kv3dl
+   $ sfdx force:data:record:get -s Account -w "Name=Acme"
+   $ sfdx force:data:record:get -s Account -w "Name='Universal Containers'"
+   $ sfdx force:data:record:get -s Account -w "Name='Universal Containers' Phone='(123) 456-7890'"
+   $ sfdx force:data:record:get -t -s TraceFlag -i 7tf170000009cUBAAY
+
+
+=== force:data:record:update
+Usage: sfdx force:data:record:update -s <string> -v <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>] 
+
+update a record
+
+Flags:
+ -i, --sobjectid SOBJECTID            the ID of the record you’re updating
+ -s, --sobjecttype SOBJECTTYPE        (required) the type of the record you’re
+                                      updating
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -t, --usetoolingapi                  update the record with Tooling API
+ -v, --values VALUES                  (required) the <fieldName>=<value> pairs
+                                      you’re updating
+ -w, --where WHERE                    a list of <fieldName>=<value> pairs to
+                                      search for
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+The format of a field-value pair is <fieldName>=<value>.
+Enclose all field-value pairs in one set of double quotation marks, delimited by spaces.
+Enclose values that contain spaces in single quotes.
+
+Examples:
+   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v "Name=NewAcme"
+   $ sfdx force:data:record:update -s Account -w "Name='Old Acme'" -v "Name='New Acme'"
+   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v "Name='Acme III' Website=www.example.com"
+   $ sfdx force:data:record:update -t -s TraceFlag -i 7tf170000009cUBAAY -v "ExpirationDate=2017-12-01T00:58:04.000+0000"
+
+
+=== force:mdapi:retrieve
+Usage: sfdx force:mdapi:retrieve -r <directory> [-a <number>] [-w <minutes>] [-k <filepath>] [-d <directory>] [-p <string>...] [-s] [-i <id>] [-u <string>] [--json] [--loglevel <string>] [--verbose] 
+
+retrieve metadata from an org using Metadata API
+
+Flags:
+ -a, --apiversion APIVERSION                target API version for the retrieve
+                                            (default 41.0)
+ -i, --jobid JOBID                          WARNING: The flag "jobid" has been
+                                            deprecated and will be removed in
+                                            v41.01.0 or later. Instead, use
+                                            "sfdx force:mdapi:retrieve:report -i
+                                            <jobId> -r <targetDir>".
+ -p, --packagenames PACKAGENAMES            a comma-separated list of packages
+                                            to retrieve
+ -r, --retrievetargetdir RETRIEVETARGETDIR  (required) directory root for the
+                                            retrieved files
+ -s, --singlepackage                        a single-package retrieve (default:
+                                            false)
+ -d, --sourcedir SOURCEDIR                  source dir to use instead of default
+                                            manifest sfdx-project.xml
+ -u, --targetusername TARGETUSERNAME        username or alias for the target
+                                            org; overrides default target org
+ -k, --unpackaged UNPACKAGED                file path of manifest of components
+                                            to retrieve
+ -w, --wait WAIT                            wait time for command to finish in
+                                            minutes (default: -1 (no limit))
+ --json                                     format output as json
+ --loglevel LOGLEVEL                        logging level for this command
+                                            invocation
+                                            (error*,trace,debug,info,warn,fatal)
+ --verbose                                  verbose output of retrieve result
+
+The default target username is the admin user for the default scratch org. You can retrieve and deploy up to 10,000 files or 400 MB (39 MB compressed) at one time.
+
+
+=== force:mdapi:retrieve:report
+Usage: sfdx force:mdapi:retrieve:report [-w <minutes>] [-r <directory>] [-i <id>] [-u <string>] [--json] [--loglevel <string>] [--verbose] 
+
+check the status of a metadata retrieval
+
+Flags:
+ -i, --jobid JOBID                          job ID of the retrieve you want to
+                                            check
+ -r, --retrievetargetdir RETRIEVETARGETDIR  directory root for the retrieved
+                                            files
+ -u, --targetusername TARGETUSERNAME        username or alias for the target
+                                            org; overrides default target org
+ -w, --wait WAIT                            wait time for command to finish in
+                                            minutes (default: -1 (no limit))
+ --json                                     format output as json
+ --loglevel LOGLEVEL                        logging level for this command
+                                            invocation
+                                            (error*,trace,debug,info,warn,fatal)
+ --verbose                                  verbose output of retrieve result
+
+Specify the job ID and a target directory for the retrieve you want to check. You can also specify a wait time (minutes) to check for updates to the deploy status. If the retrieve was successful, the resulting zip file will be saved to the location passed in with the retrieve target parameter.
+
+
+=== force:alias:set
+Usage: sfdx force:alias:set name=value... [--json] [--loglevel <string>] 
+
+set username aliases for the Salesforce CLI
+
+Flags:
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+You can associate an alias with only one username at a time. If you’ve set an alias multiple times, the alias points to the most recent username.
+
+To delete an alias, run "sfdx force:alias:set" with no username.
+
+Examples:
+   $ sfdx force:alias:set DefaultOrg=me@my.org
+   $ sfdx force:alias:set DefaultOrg=me@my.org DevHubOrg=me@myhub.org
+   $ sfdx force:alias:set AliasToDelete=
+
+
+=== force:config:set
+Usage: sfdx force:config:set name=value... [-g] [--json] [--loglevel <string>] 
+
+set config vars for the Salesforce CLI
+
+Flags:
+ -g, --global         set config var globally (to be used from any directory)
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Sets the configuration variables that the Salesforce CLI uses for various commands and tasks. Local variables apply only to your current project. Global variables apply in any directory.
+
+Examples:
+   $ sfdx force:config:set defaultusername=me@my.org defaultdevhubusername=me@myhub.org
+   $ sfdx force:config:set defaultdevhubusername=me@myhub.org -g
+
+
+=== force:auth:sfdxurl:store
+Usage: sfdx force:auth:sfdxurl:store -f <filepath> [-d] [-s] [-a <string>] [--json] [--loglevel <string>] 
+
+authorize an org using an SFDX auth URL
+
+Flags:
+ -a, --setalias SETALIAS         set an alias for the authenticated org
+ -d, --setdefaultdevhubusername  set the authenticated org as the default dev
+                                 hub org for scratch org creation
+ -s, --setdefaultusername        set the authenticated org as the default
+                                 username that all commands run against
+ -f, --sfdxurlfile SFDXURLFILE   (required) path to a file containing the sfdx
+                                 url
+ --json                          format output as json
+ --loglevel LOGLEVEL             logging level for this command invocation
+                                 (error*,trace,debug,info,warn,fatal)
+
+Authorize a Salesforce org using an SFDX auth URL stored within a file.
+The file must have the format "force://<refreshToken>@<instanceUrl>" or "force://<clientId>:<clientSecret>:<refreshToken>@<instanceUrl>".
+The file must contain only the URL or be a JSON file that has a top-level property named sfdxAuthUrl.
+
+Examples:
+   $ sfdx force:auth:sfdxurl:store -f <path to sfdxAuthUrl file>
+   $ sfdx force:auth:sfdxurl:store -f <path to sfdxAuthUrl file> -s -a MyDefaultOrg
+
+
+=== force:org:shape:create
+Usage: sfdx force:org:shape:create [-u <string>] [--json] [--loglevel <string>] 
+
+create a snapshot of org edition, features, and licenses
+
+Flags:
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:org:shape:create -u me@my.org
+   $ sfdx force:org:shape:create -u me@my.org --json --loglevel debug
+
+
+=== force:org:shape:delete
+Usage: sfdx force:org:shape:delete -u <string> [-p] [--json] [--loglevel <string>] 
+
+delete all org shapes for a target org
+
+Flags:
+ -p, --noprompt                       do not prompt for confirmation
+ -u, --targetusername TARGETUSERNAME  (required) username for the target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:org:shape:delete -u me@my.org
+   $ sfdx force:org:shape:delete -u MyOrgAlias -p
+   $ sfdx force:org:shape:delete -u me@my.org --json
+   $ sfdx force:org:shape:delete -u me@my.org -p --json > tmp/MyOrgShapeDelete.json
+
+
+=== force:org:shape:list
+Usage: sfdx force:org:shape:list [--json] [--loglevel <string>] 
+
+list all org shapes you’ve created
+
+Flags:
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:org:shape:list
+   $ sfdx force:org:shape:list --json
+   $ sfdx force:org:shape:list --json > tmp/MyOrgShapeList.json
+
+
+=== force:schema:sobject:describe
+Usage: sfdx force:schema:sobject:describe -s <string> [-u <string>] [--json] [--loglevel <string>] 
+
+describe an object
+
+Flags:
+ -s, --sobjecttype SOBJECTTYPE        (required) the API name of the object to
+                                      describe
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:schema:sobject:describe -s Account
+   $ sfdx force:schema:sobject:describe -s MyObject__c
+
+
+=== force:schema:sobject:list
+Usage: sfdx force:schema:sobject:list -c <string> [-u <string>] [--json] [--loglevel <string>] 
+
+list all objects of a specified category
+
+Flags:
+ -c, --sobjecttypecategory SOBJECTTYPECATEGORY  (required) the type of objects
+                                                to list (all|custom|standard)
+ -u, --targetusername TARGETUSERNAME            username or alias for the target
+                                                org; overrides default target
+                                                org
+ --json                                         format output as json
+ --loglevel LOGLEVEL                            logging level for this command
+                                                invocation
+                                                (error*,trace,debug,info,warn,fatal)
+
+Lists all objects, custom objects, or standard objects in the org.
+
+Examples:
+   $ sfdx force:schema:sobject:list -c all
+   $ sfdx force:schema:sobject:list -c custom
+   $ sfdx force:schema:sobject:list -c standard
+
+
+=== force:data:soql:query
+Usage: sfdx force:data:soql:query -q <string> [-t] [-r <string>] [-u <string>] [--json] [--loglevel <string>] 
+
+execute a SOQL query
+
+Flags:
+ -q, --query QUERY                    (required) SOQL query to execute
+ -r, --resultformat RESULTFORMAT      query result format emitted to stdout;
+                                      --json flag overrides this parameter
+                                      (human*,csv,json)
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -t, --usetoolingapi                  execute query with Tooling API
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+When you execute this command in a project, it executes the query against the data in your default scratch org.
+
+Examples:
+   $ sfdx force:data:soql:query -q "SELECT Id, Name, Account.Name FROM Contact"
+   $ sfdx force:data:soql:query -q "SELECT Id, Name FROM Account WHERE ShippingState IN ('CA', 'NY')"
+   $ sfdx force:data:soql:query -q "SELECT Name FROM ApexTrigger" -t
+
+
+=== force:source:status
+Usage: sfdx force:source:status [-a] [-l] [-r] [-u <string>] [--json] [--loglevel <string>] 
+
+list local changes and/or changes in a scratch org
+
+Flags:
+ -a, --all                            list all the changes that have been made
+ -l, --local                          list the changes that have been made
+                                      locally
+ -r, --remote                         list the changes that have been made in
+                                      the scratch org
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:source:status -l
+   $ sfdx force:source:status -r
+   $ sfdx force:source:status -a
+   $ sfdx force:source:status -a -u me@my.org --json
+
+
+=== force:lightning:test:create
+Usage: sfdx force:lightning:test:create -n <string> [-t <string>] [-d <string>] [--json] [--loglevel <string>] 
+
+create a Lightning test
+
+Flags:
+ -d, --outputdir OUTPUTDIR  folder for saving the created files
+ -t, --template TEMPLATE    template to use for file creation
+                            (DefaultLightningTest*)
+ -n, --testname TESTNAME    (required) name of the generated Lightning test
+ --json                     JSON output
+ --loglevel LOGLEVEL        logging level for this command invocation
+                            (error*,trace,debug,info,warn,fatal)
+
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:lightning:test:create -n MyLightningTest
+   $ sfdx force:lightning:test:create -n MyLightningTest -d lightningTests
+
+
+=== force:lightning:test:install
+Usage: sfdx force:lightning:test:install [-w <minutes>] [-r <string>] [-t <string>] [-u <string>] [--json] [--loglevel <string>] 
+
+install Lightning Testing Service unmanaged package in your org
+
+Flags:
+ -t, --packagetype PACKAGETYPE        type of unmanaged package. 'full' option
+                                      contains both jasmine and mocha, plus
+                                      examples (full*,jasmine,mocha)
+ -r, --releaseversion RELEASEVERSION  release version of Lightning Testing
+                                      Service (default:latest)
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -w, --wait WAIT                      number of minutes to wait for installation
+                                      status (default:2)
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:lightning:test:install
+   $ sfdx force:lightning:test:install -w 0 -r v1.0
+   $ sfdx force:lightning:test:install -t jasmine
+
+
+=== force:apex:test:report
+Usage: sfdx force:apex:test:report -i <id> [-c] [-d <directory>] [-r <string>] [-w <minutes>] [-u <string>] [--json] [--loglevel <string>] [--verbose] 
+
+display test results
+
+Flags:
+ -c, --codecoverage                   retrieve code coverage results
+ -d, --outputdir OUTPUTDIR            directory to store test run files
+ -r, --resultformat RESULTFORMAT      test result format emitted to stdout;
+                                      --json flag overrides this parameter
+                                      (human*,tap,junit,json)
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -i, --testrunid TESTRUNID            (required) ID of test run
+ -w, --wait WAIT                      the streaming client socket timeout (in
+                                      minutes) (default:6, min:2)
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+ --verbose                            display Apex test processing details
+
+Displays test results for an enqueued or completed asynchronous Apex test run.
+
+Examples:
+   $ sfdx force:apex:test:report -i <test run id>
+   $ sfdx force:apex:test:report -i <test run id> -r junit
+   $ sfdx force:apex:test:report -i <test run id> -c --json
+
+
+=== force:apex:test:run
+Usage: sfdx force:apex:test:run (-n <string>... | -s <string>...) [-c] [-d <directory>] [-l <string>] [-r <string>] [-y] [-u <string>] [--json] [--loglevel <string>] [--verbose] 
+
+invoke Apex tests
+
+Flags:
+ -n, --classnames CLASSNAMES          comma-separated list of Apex test class
+                                      names to execute
+ -c, --codecoverage                   retrieve code coverage results
+ -d, --outputdir OUTPUTDIR            directory to store test run files
+ -r, --resultformat RESULTFORMAT      test result format emitted to stdout;
+                                      --json flag overrides this parameter
+                                      (human*,tap,junit,json)
+ -s, --suitenames SUITENAMES          comma-separated list of Apex test suite
+                                      names to execute
+ -y, --synchronous                    run tests from a single class
+                                      synchronously
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -l, --testlevel TESTLEVEL            testlevel enum value
+                                      (RunLocalTests,RunAllTestsInOrg,RunSpecifiedTests)
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+ --verbose                            display Apex test processing details
+
+By default, runs all Apex tests in the org’s namespace.
+To run specific tests, specify the class names or suite names or set a --testlevel value.
+
+Examples:
+   $ sfdx force:apex:test:run
+   $ sfdx force:apex:test:run -n MyClassTest,MyOtherClassTest -r human
+   $ sfdx force:apex:test:run -s MySuite,MyOtherSuite -c --json
+   $ sfdx force:apex:test:run -l RunLocalTests -d <path to outputdir> -u me@my.org
+
+
+=== force:lightning:test:run
+Usage: sfdx force:lightning:test:run [-a <string>] [-d <directory>] [-r <string>] [-f <filepath>] [-o] [-t <number>] [-u <string>] [--json] [--loglevel <string>] 
+
+invoke Lightning component tests
+
+Flags:
+ -a, --appname APPNAME                name of your Lightning test application
+ -f, --configfile CONFIGFILE          path to config file for the test
+ -o, --leavebrowseropen               leave browser open
+ -d, --outputdir OUTPUTDIR            directory path to store test run
+                                      artifacts: for example, log files and test
+                                      results
+ -r, --resultformat RESULTFORMAT      test result format emitted to stdout;
+                                      --json flag overrides this parameter
+                                      (human*,tap,junit,json)
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -t, --timeout TIMEOUT                time (ms) to wait for results element in
+                                      dom (default:60000)
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:lightning:test:run
+   $ sfdx force:lightning:test:run -a tests -r human
+   $ sfdx force:lightning:test:run -f config/myConfigFile.json -d testResultFolder
+
+
+=== force:data:tree:export
+Usage: sfdx force:data:tree:export -q <string> [-p] [-x <string>] [-d <directory>] [-u <string>] [--json] [--loglevel <string>] 
+
+export data from an org into sObject tree format for force:data:tree:import consumption
+
+Flags:
+ -d, --outputdir OUTPUTDIR            directory to store files
+ -p, --plan                           generate mulitple sobject tree files and a
+                                      plan definition file for aggregated import
+ -x, --prefix PREFIX                  prefix of generated files
+ -q, --query QUERY                    (required) soql query, or filepath of file
+                                      containing a soql query, to retrieve
+                                      records
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Generates JSON files for use with the force:data:tree:import command.
+
+Examples:
+   $ sfdx force:data:tree:export -q "SELECT Id, Name, (SELECT Name, Address__c FROM Properties__r) FROM Broker__c"
+   $ sfdx force:data:tree:export -q <path to file containing soql query> -x export-demo -d /tmp/sfdx-out -p
+
+For more information and examples, run "sfdx force:data:tree:import -h".
+
+
+=== force:data:tree:import
+Usage: sfdx force:data:tree:import (-f <filepath>... | -p <filepath>) [-c <string>] [--confighelp] [-u <string>] [--json] [--loglevel <string>] 
+
+import data into an org using SObject Tree Save API
+
+Flags:
+ -c, --contenttype CONTENTTYPE            if data file extension is not .json,
+                                          provide content type (applies to all
+                                          files)
+ -p, --plan PLAN                          path to plan to insert multiple data
+                                          files that have master-detail
+                                          relationships
+ -f, --sobjecttreefiles SOBJECTTREEFILES  comma-delimited, ordered paths of json
+                                          files containing collection of record
+                                          trees to insert
+ -u, --targetusername TARGETUSERNAME      username or alias for the target org;
+                                          overrides default target org
+ --confighelp                             display schema information for the
+                                          --plan configuration file to stdout;
+                                          if you use this option, all other
+                                          options except --json are ignored
+ --json                                   format output as json
+ --loglevel LOGLEVEL                      logging level for this command
+                                          invocation
+                                          (error*,trace,debug,info,warn,fatal)
+
+To generate JSON files for use with force:data:tree:import, run "sfdx force:data:tree:export".
+
+Examples:
+To import records as individual files, first run the export commands:
+   $ sfdx force:data:tree:export -q "SELECT Id, Name FROM Account"
+   $ sfdx force:data:tree:export -q "SELECT Id, LastName, FirstName FROM Contact"
+Then run the import command:
+   $ sfdx force:data:tree:import -f Contact.json,Account.json -u me@my.org
+
+To import multiple data files as part of a plan, first run the export command with the -p | --plan flag:
+   $ sfdx force:data:tree:export -p -q "SELECT Id, Name, (SELECT Id, LastName, FirstName FROM Contacts) FROM Account"
+Then run the import command, supplying a filepath value for the -p | --plan parameter:
+   $ sfdx force:data:tree:import -p Account-Contact-plan.json -u me@my.org
+
+
+=== force:apex:trigger:create
+Usage: sfdx force:apex:trigger:create -n <string> [-t <string>] [-d <string>] [-a <string>] [-s <string>] [-e <string>...] [--json] [--loglevel <string>] 
+
+create an Apex trigger
+
+Flags:
+ -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -d, --outputdir OUTPUTDIR          folder for saving the created files
+ -s, --sobject SOBJECT              sObject to create a trigger on (SOBJECT*)
+ -t, --template TEMPLATE            template to use for file creation
+                                    (ApexTrigger*)
+ -e, --triggerevents TRIGGEREVENTS  events that fire the trigger (before
+                                    insert*,before upsert,before delete,after
+                                    insert,after upsert,after delete,after
+                                    undelete)
+ -n, --triggername TRIGGERNAME      (required) name of the generated Apex
+                                    trigger
+ --json                             JSON output
+ --loglevel LOGLEVEL                logging level for this command invocation
+                                    (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:apex:trigger:create -n MyTrigger
+   $ sfdx force:apex:trigger:create -n MyTrigger -s Account -e 'before insert, after upsert'
+   $ sfdx force:apex:trigger:create -n MyTrigger -d triggers
+
+
+=== force:package:uninstall
+Usage: sfdx force:package:uninstall -i <id> [-w <minutes>] [-u <string>] [--json] [--loglevel <string>] 
+
+uninstall a second-generation package from the target org
+
+Flags:
+ -i, --id ID                          (required) ID of the package to uninstall
+                                      (starts with 04t)
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ -w, --wait WAIT                      number of minutes to wait for uninstall
+                                      status
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Specify the package ID for a second-generation package.
+
+Examples:
+   $ sfdx force:package:uninstall --id 04t...
+   $ sfdx force:package:uninstall -i 04t... -u <username of target org>
+
+To list the org’s installed packages, run "package:installed:list".
+
+To uninstall a first-generation package, from Setup, enter Installed Packages in the Quick Find box, then select Installed Packages.
+
+
+=== force:package:uninstall:get
+Usage: sfdx force:package:uninstall:get -i <id> [-u <string>] [--json] [--loglevel <string>] 
+
+retrieve status of package uninstall request
+
+Flags:
+ -i, --requestid REQUESTID            (required) ID of the package uninstall
+                                      request you want to check
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Displays the status of a package uninstall request.
+
+
+=== force:package2:update
+Usage: sfdx force:package2:update -i <id> [-n <string>] [-d <string>] [-v <string>] [--json] [--loglevel <string>] 
+
+update a second-generation package
+
+Flags:
+ -d, --description DESCRIPTION                    package description
+ -n, --name NAME                                  package name
+ -i, --package2id PACKAGE2ID                      (required) id of the package
+                                                  (starts with 0Ho)
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+Specify a new value for each option you want to update.
+
+Examples:
+   $ sfdx force:package2:update --package2id 0Ho... --name 'AAnalytics'
+   $ sfdx force:package2:update -i 0Ho... -d 'Advanced Analytics'
+
+Run 'sfdx force:package2:list' to list all second-generation packages in the Dev Hub org.
+
+
+=== force:project:upgrade
+Usage: sfdx force:project:upgrade [-f] [--json] [--loglevel <string>] 
+
+update project config files to the latest format
+
+Flags:
+ -f, --forceupgrade   run all upgrades even if project has already been upgraded
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Examples:
+ $   sfdx force:project:upgrade
+ $   sfdx force:project:upgrade -f
+
+
+=== force:package1:version:create
+Usage: sfdx force:package1:version:create -i <id> -n <string> [-d <string>] [-v <string>] [-m] [-r <url>] [-p <url>] [-k <string>] [-w <number>] [-u <string>] [--json] [--loglevel <string>] 
+
+create a first-generation package version in the release org
+
+Flags:
+ -d, --description DESCRIPTION          package version description
+ -k, --installationkey INSTALLATIONKEY  installation key for key-protected
+                                        package (default: null)
+ -m, --managedreleased                  create a managed package version
+ -n, --name NAME                        (required) package version name
+ -i, --packageid PACKAGEID              (required) ID of the metadata package
+                                        (starts with 033) of which you’re
+                                        creating a new version
+ -p, --postinstallurl POSTINSTALLURL    post install URL
+ -r, --releasenotesurl RELEASENOTESURL  release notes URL
+ -u, --targetusername TARGETUSERNAME    username or alias for the target org;
+                                        overrides default target org
+ -v, --version VERSION                  package version in major.minor format,
+                                        for example, 3.2
+ -w, --wait WAIT                        minutes to wait for the package version
+                                        to be created (default: 2 minutes)
+ --json                                 format output as json
+ --loglevel LOGLEVEL                    logging level for this command
+                                        invocation
+                                        (error*,trace,debug,info,warn,fatal)
+
+The package version is based on the contents of the specified metadata package. Omit -m if you want to create an unmanaged package version.
+
+
+=== force:package2:version:create
+Usage: sfdx force:package2:version:create [-i <id>] [-d <directory>] [-b <string>] [-t <string>] [-k <string>] [-w <minutes>] [-v <string>] [--json] [--loglevel <string>] 
+
+create a second-generation package version
+
+Flags:
+ -b, --branch BRANCH                              the package version’s branch
+ -d, --directory DIRECTORY                        path to directory that
+                                                  contains the contents of the
+                                                  package version
+ -k, --installationkey INSTALLATIONKEY            installation key for
+                                                  key-protected package
+                                                  (default: null)
+ -i, --package2id PACKAGE2ID                      ID of the parent package
+                                                  (starts with 0Ho)
+ -t, --tag TAG                                    the package version’s tag
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ -w, --wait WAIT                                  minutes to wait for the
+                                                  package version to be created
+                                                  (default:0)
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+The package version is based on the package contents in the specified directory.
+
+To retrieve details about a package version create request, including status and package2 version ID (05i), run "sfdx force:package2:version:create:get -i 08c...".
+
+To list package version creation requests in the org, run "sfdx force:package2:version:create:list".
+
+Examples:
+   $ sfdx force:package2:version:create -d common
+   $ sfdx force:package2:version:create -i 0Ho... -d common
+
+
+=== force:package1:version:create:get
+Usage: sfdx force:package1:version:create:get -i <id> [-u <string>] [--json] [--loglevel <string>] 
+
+retrieve the status of a package version creation request
+
+Flags:
+ -i, --requestid REQUESTID            (required) PackageUploadRequest ID
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+Displays the status of a package upload request.
+
+
+=== force:package2:version:create:get
+Usage: sfdx force:package2:version:create:get -i <id> [-v <string>] [--json] [--loglevel <string>] 
+
+retrieve a package version creation request
+
+Flags:
+ -i, --package2createrequestid PACKAGE2CREATEREQUESTID  (required) package2
+                                                        version creation request
+                                                        ID (starts with 08c)
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME        username or alias for
+                                                        the dev hub org;
+                                                        overrides default dev
+                                                        hub org
+ --json                                                 format output as json
+ --loglevel LOGLEVEL                                    logging level for this
+                                                        command invocation
+                                                        (error*,trace,debug,info,warn,fatal)
+
+Specify the request ID for which you want to view details. If applicable, the command displays errors related to the request.
+
+Examples:
+   $ sfdx force:package2:version:create:get --package2createrequestid 08c...
+
+To show all requests in the org, run "sfdx package2:version:create:list".
+
+
+=== force:package2:version:create:list
+Usage: sfdx force:package2:version:create:list [-c <number>] [-s <string>] [-v <string>] [--json] [--loglevel <string>] 
+
+list package version creation requests
+
+Flags:
+ -c, --createdlastdays CREATEDLASTDAYS            created in the last specified
+                                                  number of days (starting at
+                                                  00:00:00 of first day to now;
+                                                  0 for today)
+ -s, --status STATUS                              filter the list by version
+                                                  creation request status
+                                                  (Queued,InProgress,Success,Error)
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+Shows the details of each request to create a package2 version that's run in the Dev Hub org.
+
+All filter parameters are applied using the AND logical operator (not OR).
+
+To get information about a specific request, run "sfdx force:package2:version:create:get" and supply the request ID.
+
+Examples:
+   $ sfdx force:package2:version:create:list
+   $ sfdx force:package2:version:create:list --createdlastdays 3
+   $ sfdx force:package2:version:create:list --status Error
+   $ sfdx force:package2:version:create:list -s InProgress
+   $ sfdx force:package2:version:create:list -c 3 -s Success
+
+
+=== force:package1:version:display
+Usage: sfdx force:package1:version:display -i <id> [-u <string>] [--json] [--loglevel <string>] 
+
+display details about a first-generation package version
+
+Flags:
+ -i, --packageversionid PACKAGEVERSIONID  (required) metadata package version ID
+                                          (starts with 04t)
+ -u, --targetusername TARGETUSERNAME      username or alias for the target org;
+                                          overrides default target org
+ --json                                   format output as json
+ --loglevel LOGLEVEL                      logging level for this command
+                                          invocation
+                                          (error*,trace,debug,info,warn,fatal)
+
+Display detailed information about an individual package version, including metadata package ID, name, the release state, and build number.
+
+
+=== force:package2:version:get
+Usage: sfdx force:package2:version:get -i <id> [-v <string>] [--json] [--loglevel <string>] 
+
+retrieve a package version in the Dev Hub org
+
+Flags:
+ -i, --package2versionid PACKAGE2VERSIONID        (required) the package version
+                                                  ID (starts wtih 05i)
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+Examples:
+   $ sfdx force:package2:version:get --package2versionid 05i...
+
+To update package version values, run "sfdx force:package2:version:update".
+
+
+=== force:package1:version:list
+Usage: sfdx force:package1:version:list [-i <id>] [-u <string>] [--json] [--loglevel <string>] 
+
+list package versions for the specified first-generation package or for the org
+
+Flags:
+ -i, --packageid PACKAGEID            metadata package ID (starts with 033)
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+If a metadata package ID is specified, lists all versions of the specified package. Otherwise, lists all package versions for the org. For each package version, the list includes the package version ID, metadata package ID, name, version number, and release state.
+
+
+=== force:package2:version:list
+Usage: sfdx force:package2:version:list [-c <number>] [-m <number>] [-i <string>...] [-r] [-o <string>...] [-v <string>] [--concise] [--json] [--loglevel <string>] [--verbose] 
+
+list all package versions in the Dev Hub org
+
+Flags:
+ -c, --createdlastdays CREATEDLASTDAYS            created in the last specified
+                                                  number of days (starting at
+                                                  00:00:00 of first day to now;
+                                                  0 for today)
+ -m, --modifiedlastdays MODIFIEDLASTDAYS          list items modified in the
+                                                  specified last number of days
+                                                  (starting at 00:00:00 of first
+                                                  day to now; 0 for today)
+ -o, --orderby ORDERBY                            order by the specified
+                                                  package2 version fields
+ -i, --package2ids PACKAGE2IDS                    filter results on specified
+                                                  comma-delimited package2 ids
+                                                  (start with 0Ho)
+ -r, --released                                   display released versions only
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ --concise                                        display limited package2
+                                                  version details
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+ --verbose                                        display extended package2
+                                                  versions detail
+
+Displays details of each package2 version in the org.
+
+Use --concise or --verbose to display limited or additional details, respectively.
+
+All filter parameters are applied using the AND logical operator (not OR).
+
+Examples:
+   $ sfdx force:package2:version:list --verbose --createdlastdays 3 --released --orderby PatchVersion
+   $ sfdx force:package2:version:list --package2ids 0Ho000000000000,0Ho000000000001 --released --modifiedlastdays 0
+   $ sfdx force:package2:version:list --released
+   $ sfdx force:package2:version:list --concise --modifiedlastdays 0
+   $ sfdx force:package2:version:list --concise -c 3 -r
+
+
+=== force:package2:version:update
+Usage: sfdx force:package2:version:update -i <id> [-n <string>] [-d <string>] [-b <string>] [-t <string>] [-k <string>] [-s] [-v <string>] [--json] [--loglevel <string>] 
+
+update a second-generation package version
+
+Flags:
+ -b, --branch BRANCH                              the package version branch
+ -d, --description DESCRIPTION                    the package version
+                                                  description
+ -k, --installationkey INSTALLATIONKEY            installation key for
+                                                  key-protected package
+                                                  (default: null)
+ -n, --name NAME                                  the package version name
+ -i, --package2versionid PACKAGE2VERSIONID        (required) the package version
+                                                  ID (starts wtih 05i)
+ -s, --setasreleased                              set the package version as
+                                                  released (can’t be undone)
+ -t, --tag TAG                                    the package version tag
+ -v, --targetdevhubusername TARGETDEVHUBUSERNAME  username or alias for the dev
+                                                  hub org; overrides default dev
+                                                  hub org
+ --json                                           format output as json
+ --loglevel LOGLEVEL                              logging level for this command
+                                                  invocation
+                                                  (error*,trace,debug,info,warn,fatal)
+
+Specify a new value for each option you want to update.
+
+Examples:
+   $ sfdx force:package2:version:update --package2versionid 05i... --setasreleased
+   $ sfdx force:package2:version:update -i 05i... -b master -t 'Release 1.0.7'
+
+To display details about a package2 version, run "sfdx package2:version:get".
+
+
+=== force:auth:web:login
+Usage: sfdx force:auth:web:login [-i <string>] [-r <url>] [-d] [-s] [-a <string>] [--json] [--loglevel <string>] 
+
+authorize an org using the web login flow
+
+Flags:
+ -i, --clientid CLIENTID         OAuth client ID (sometimes called the consumer
+                                 key)
+ -r, --instanceurl INSTANCEURL   the login URL of the instance the org lives on
+ -a, --setalias SETALIAS         set an alias for the authenticated org
+ -d, --setdefaultdevhubusername  set the authenticated org as the default dev
+                                 hub org for scratch org creation
+ -s, --setdefaultusername        set the authenticated org as the default
+                                 username that all commands run against
+ --json                          format output as json
+ --loglevel LOGLEVEL             logging level for this command invocation
+                                 (error*,trace,debug,info,warn,fatal)
+
+To log in to a sandbox, set --instanceurl to https://test.salesforce.com.
+
+Examples:
+   $ sfdx force:auth:web:login -a TestOrg1
+   $ sfdx force:auth:web:login -i <OAuth client id>
+   $ sfdx force:auth:web:login -r https://test.salesforce.com
+
+
+=== force:alias
+Usage: sfdx force:alias:COMMAND [command-specific-options]
+
+manage username aliases
+
+sfdx force:alias commands: (get help with sfdx help force:alias:COMMAND)
+ force:alias:list  list username aliases for the Salesforce CLI
+ force:alias:set   set username aliases for the Salesforce CLI
+
+
+=== force:apex
+Usage: sfdx force:apex:COMMAND [command-specific-options]
+
+work with Apex code
+
+sfdx force:apex commands: (get help with sfdx help force:apex:COMMAND)
+ force:apex:class:create    create an Apex class
+ force:apex:execute         execute anonymous Apex code
+ force:apex:log:get         fetch a debug log
+ force:apex:log:list        list debug logs
+ force:apex:test:report     display test results
+ force:apex:test:run        invoke Apex tests
+ force:apex:trigger:create  create an Apex trigger
+
+
+=== force:auth
+Usage: sfdx force:auth:COMMAND [command-specific-options]
+
+authorize an org for use with the Salesforce CLI
+
+sfdx force:auth commands: (get help with sfdx help force:auth:COMMAND)
+ force:auth:jwt:grant      authorize an org using the JWT flow
+ force:auth:sfdxurl:store  authorize an org using an SFDX auth URL
+ force:auth:web:login      authorize an org using the web login flow
+
+
+=== force:config
+Usage: sfdx force:config:COMMAND [command-specific-options]
+
+configure the Salesforce CLI
+
+sfdx force:config commands: (get help with sfdx help force:config:COMMAND)
+ force:config:get   get config var values for given names
+ force:config:list  list config vars for the Salesforce CLI
+ force:config:set   set config vars for the Salesforce CLI
+
+
+=== force:data
+Usage: sfdx force:data:COMMAND [command-specific-options]
+
+manipulate records in your org
+
+sfdx force:data commands: (get help with sfdx help force:data:COMMAND)
+ force:data:bulk:delete    bulk delete records from a csv file
+ force:data:bulk:status    view the status of a bulk data load job or batch
+ force:data:bulk:upsert    bulk upsert records from a CSV file
+ force:data:record:create  create a record
+ force:data:record:delete  delete a record
+ force:data:record:get     view a record
+ force:data:record:update  update a record
+ force:data:soql:query     execute a SOQL query
+ force:data:tree:export    export data from an org into sObject tree format for
+                           force:data:tree:import consumption
+ force:data:tree:import    import data into an org using SObject Tree Save API
+
+
+=== force:doc
+Usage: sfdx force:doc:COMMAND [command-specific-options]
+
+display help for force commands
+
+sfdx force:doc commands: (get help with sfdx help force:doc:COMMAND)
+ force:doc:commands:display  display help for force commands
+ force:doc:commands:list     list the force commands
+
+
+=== force:lightning
+Usage: sfdx force:lightning:COMMAND [command-specific-options]
+
+create and test Lightning component bundles
+
+sfdx force:lightning commands: (get help with sfdx help force:lightning:COMMAND)
+ force:lightning:app:create        create a Lightning app
+ force:lightning:component:create  create a Lightning component
+ force:lightning:event:create      create a Lightning event
+ force:lightning:interface:create  create a Lightning interface
+ force:lightning:lint              analyse (lint) Lightning component code
+ force:lightning:test:create       create a Lightning test
+ force:lightning:test:install      install Lightning Testing Service unmanaged
+                                   package in your org
+ force:lightning:test:run          invoke Lightning component tests
+
+
+=== force:limits
+Usage: sfdx force:limits:COMMAND [command-specific-options]
+
+view your org’s limits
+
+sfdx force:limits commands: (get help with sfdx help force:limits:COMMAND)
+ force:limits:api:display  display current org’s limits
+
+
+=== force:mdapi
+Usage: sfdx force:mdapi:COMMAND [command-specific-options]
+
+retrieve and deploy metadata using Metadata API
+
+sfdx force:mdapi commands: (get help with sfdx help force:mdapi:COMMAND)
+ force:mdapi:convert          convert Metadata API source into the Salesforce DX
+                              source format
+ force:mdapi:deploy           deploy metadata to an org using Metadata API
+ force:mdapi:deploy:report    check the status of a metadata deployment
+ force:mdapi:retrieve         retrieve metadata from an org using Metadata API
+ force:mdapi:retrieve:report  check the status of a metadata retrieval
+
+
+=== force:org
+Usage: sfdx force:org:COMMAND [command-specific-options]
+
+manage your Salesforce DX orgs
+
+sfdx force:org commands: (get help with sfdx help force:org:COMMAND)
+ force:org:create        create a scratch org
+ force:org:delete        mark a scratch org for deletion
+ force:org:display       get org description
+ force:org:list          list all orgs you’ve created or authenticated to
+ force:org:open          open an org in your browser
+ force:org:shape:create  create a snapshot of org edition, features, and
+                         licenses
+ force:org:shape:delete  delete all org shapes for a target org
+ force:org:shape:list    list all org shapes you’ve created
+
+
+=== force:package
+Usage: sfdx force:package:COMMAND [command-specific-options]
+
+install and uninstall first- and second-generation packages
+
+Usage: sfdx force:package:COMMAND
+
+Help topics, type sfdx help TOPIC for more details:
+
+ force:package1  develop first-generation managed and unmanaged packages
+ force:package2  develop second-generation packages
+
+sfdx force:package commands: (get help with sfdx help force:package:COMMAND)
+ force:package:install         install a package in the target org
+ force:package:install:get     retrieve the status of a package installation
+                               request
+ force:package:installed:list  list the org’s installed packages
+ force:package:uninstall       uninstall a second-generation package from the
+                               target org
+ force:package:uninstall:get   retrieve status of package uninstall request
+
+
+=== force:package1
+Usage: sfdx force:package1:COMMAND [command-specific-options]
+
+develop first-generation managed and unmanaged packages
+
+sfdx force:package1 commands: (get help with sfdx help force:package1:COMMAND)
+ force:package1:version:create      create a first-generation package version in
+                                    the release org
+ force:package1:version:create:get  retrieve the status of a package version
+                                    creation request
+ force:package1:version:display     display details about a first-generation
+                                    package version
+ force:package1:version:list        list package versions for the specified
+                                    first-generation package or for the org
+
+
+=== force:package2
+Usage: sfdx force:package2:COMMAND [command-specific-options]
+
+develop second-generation packages
+
+sfdx force:package2 commands: (get help with sfdx help force:package2:COMMAND)
+ force:package2:create               create a second-generation package
+ force:package2:list                 list all second-generation packages in the
+                                     Dev Hub org
+ force:package2:update               update a second-generation package
+ force:package2:version:create       create a second-generation package version
+ force:package2:version:create:get   retrieve a package version creation request
+ force:package2:version:create:list  list package version creation requests
+ force:package2:version:get          retrieve a package version in the Dev Hub
+                                     org
+ force:package2:version:list         list all package versions in the Dev Hub
+                                     org
+ force:package2:version:update       update a second-generation package version
+
+
+=== force:project
+Usage: sfdx force:project:COMMAND [command-specific-options]
+
+set up a Salesforce DX project
+
+sfdx force:project commands: (get help with sfdx help force:project:COMMAND)
+ force:project:create   create a new SFDX project
+ force:project:upgrade  update project config files to the latest format
+
+
+=== force:schema
+Usage: sfdx force:schema:COMMAND [command-specific-options]
+
+view standard and custom objects
+
+sfdx force:schema commands: (get help with sfdx help force:schema:COMMAND)
+ force:schema:sobject:describe  describe an object
+ force:schema:sobject:list      list all objects of a specified category
+
+
+=== force:source
+Usage: sfdx force:source:COMMAND [command-specific-options]
+
+sync your project with your orgs
+
+sfdx force:source commands: (get help with sfdx help force:source:COMMAND)
+ force:source:convert  convert Salesforce DX source into the Metadata API source
+                       format
+ force:source:open     edit a Lightning Page with Lightning App Builder
+ force:source:pull     pull source from the scratch org to the project
+ force:source:push     push source to an org from the project
+ force:source:status   list local changes and/or changes in a scratch org
+
+
+=== force:user
+Usage: sfdx force:user:COMMAND [command-specific-options]
+
+perform user-related admin tasks
+
+sfdx force:user commands: (get help with sfdx help force:user:COMMAND)
+ force:user:create             create a user for a scratch org
+ force:user:display            displays information about a user of a scratch
+                               org
+ force:user:list               lists all users of a scratch org
+ force:user:password:generate  generate a password for scratch org users
+ force:user:permset:assign     assign a permission set to one or more users of
+                               an org
+
+
+=== force:visualforce
+Usage: sfdx force:visualforce:COMMAND [command-specific-options]
+
+create and edit Visualforce files
+
+sfdx force:visualforce commands: (get help with sfdx help force:visualforce:COMMAND)
+ force:visualforce:component:create  create a Visualforce component
+ force:visualforce:page:create       create a Visualforce page
+
+
+=== force
+Usage: sfdx force: [-v] [--json] [--loglevel <string>] [flags]
+
+Flags:
+ -v, --version        display the Salesforce API version
+ --json               format output as json
+ --loglevel LOGLEVEL  logging level for this command invocation
+                      (error*,trace,debug,info,warn,fatal)
+
+Usage: sfdx force:COMMAND
+
+Help topics, type sfdx help TOPIC for more details:
+
+ force:alias        manage username aliases
+ force:apex         work with Apex code
+ force:auth         authorize an org for use with the Salesforce CLI
+ force:config       configure the Salesforce CLI
+ force:data         manipulate records in your org
+ force:doc          display help for force commands
+ force:lightning    create and test Lightning component bundles
+ force:limits       view your org’s limits
+ force:mdapi        retrieve and deploy metadata using Metadata API
+ force:org          manage your Salesforce DX orgs
+ force:package      install and uninstall first- and second-generation packages
+ force:package1     develop first-generation managed and unmanaged packages
+ force:package2     develop second-generation packages
+ force:project      set up a Salesforce DX project
+ force:schema       view standard and custom objects
+ force:source       sync your project with your orgs
+ force:user         perform user-related admin tasks
+ force:visualforce  create and edit Visualforce files
+
+
+=== force:apex
+Usage: sfdx force:apex:COMMAND [command-specific-options]
+
+work with Apex code
+
+sfdx force:apex commands: (get help with sfdx help force:apex:COMMAND)
+ force:apex:class:create    create an Apex class
+ force:apex:execute         execute anonymous Apex code
+ force:apex:log:get         fetch a debug log
+ force:apex:log:list        list debug logs
+ force:apex:test:report     display test results
+ force:apex:test:run        invoke Apex tests
+ force:apex:trigger:create  create an Apex trigger
+
+
+=== force:visualforce
+Usage: sfdx force:visualforce:COMMAND [command-specific-options]
+
+create and edit Visualforce files
+
+sfdx force:visualforce commands: (get help with sfdx help force:visualforce:COMMAND)
+ force:visualforce:component:create  create a Visualforce component
+ force:visualforce:page:create       create a Visualforce page
+
+
+=== force:lightning
+Usage: sfdx force:lightning:COMMAND [command-specific-options]
+
+create and test Lightning component bundles
+
+sfdx force:lightning commands: (get help with sfdx help force:lightning:COMMAND)
+ force:lightning:app:create        create a Lightning app
+ force:lightning:component:create  create a Lightning component
+ force:lightning:event:create      create a Lightning event
+ force:lightning:interface:create  create a Lightning interface
+ force:lightning:lint              analyse (lint) Lightning component code
+ force:lightning:test:create       create a Lightning test
+ force:lightning:test:install      install Lightning Testing Service unmanaged
+                                   package in your org
+ force:lightning:test:run          invoke Lightning component tests
+
+
+=== force:project
+Usage: sfdx force:project:COMMAND [command-specific-options]
+
+set up a Salesforce DX project
+
+sfdx force:project commands: (get help with sfdx help force:project:COMMAND)
+ force:project:create   create a new SFDX project
+ force:project:upgrade  update project config files to the latest format
+
+
