@@ -1,6 +1,6 @@
 const config = require('../../config/config')
 
-const dxez = require('sfdx-ez')
+const sfdx = require('sfdx')
 
 const shell = require('shelljs')
 const yargs = require('yargs')
@@ -39,12 +39,12 @@ exports.builder = yargs => {
 exports.handler = argv => {
   argv.alias = argv.alias || argv.orgname
 
-  const createOutput = dxez.create(argv)
+  const createOutput = sfdx.create(argv)
   if (createOutput.stderr) {
     console.error('\n' + config.stars + 'ERROR creating scratch org' + config.stars)
   }
 
-  const pushOutput = dxez.push(argv)
+  const pushOutput = sfdx.push(argv)
   if (pushOutput.stderr) {
     console.error('\n' + config.stars + 'ERROR pushing to new scratch org' + config.stars)
     console.error(pushOutput.stderr)

@@ -1,11 +1,11 @@
 #! /usr/bin/env node
 
 const config = require('../config/config')
-const dxez = require('sfdx-ez')
+const sfdx = require('sfdx')
 const shell = require('shelljs')
 const yargs = require('yargs')
 
-// dxez.project.setProjectPath(config.projectPath)
+// sfdx.project.setProjectPath(config.projectPath)
 
 yargs.command(
   '$0 [orgname] [alias|org|a]',
@@ -21,13 +21,13 @@ yargs.command(
   },
   argv => {
     argv.alias = argv.alias || argv.orgname
-    dxez.status(argv)
+    sfdx.status(argv)
   }
 )
 
 // Import all commands
-for (command of Object.keys(dxez)) {
-  yargs.command(dxez[command].yargs)
+for (command of Object.keys(sfdx)) {
+  yargs.command(sfdx[command].yargs)
 }
 
 yargs.commandDir('cmds')

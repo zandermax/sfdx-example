@@ -1,7 +1,7 @@
 {
-  "name": "sfdx-ez-example",
+  "name": "sfdx-example",
   "version": "1.0.0",
-  "description": "Example implementation of sfdx-ez",
+  "description": "Example implementation of sfdx",
   "main": "index.js",
   "bin": {
     "dx": "cli/cli.js"
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axlemax/sfdx-ez-example.git"
+    "url": "git+https://github.com/axlemax/sfdx-example.git"
   },
   "author": "Zander Maxwell",
   "license": "ISC",
   "dependencies": {
-    "sfdx-ez": "^1.0.5",
+    "sfdx": "^1.0.8",
     "shelljs": "^0.7.8",
     "yargs": "^10.0.3"
   }

@@ -1,6 +1,6 @@
 const config = require('../../config/config')
 
-const dxez = require('sfdx-ez')
+const sfdx = require('sfdx')
 
 const shell = require('shelljs')
 const yargs = require('yargs')
@@ -39,7 +39,7 @@ exports.handler = async argv => {
   }
 
   // 1 - Convert pulled code
-  const convertOutput = await dxez.convert(argv)
+  const convertOutput = await sfdx.convert(argv)
   if (convertOutput.stderr) {
     if (!argv.quiet) {
       console.error('\n' + config.stars + 'ERROR: Code deployment failed.' + config.stars)
@@ -48,7 +48,7 @@ exports.handler = async argv => {
   }
 
   // 2 - Deploy converted Metadata API code into production org
-  const deployOutput = await dxez.deploy(argv)
+  const deployOutput = await sfdx.deploy(argv)
   if (deployOutput.stderr) {
     if (!argv.quiet) {
       console.error('\n' + config.stars + 'ERROR: Code deployment failed.' + config.stars)
