@@ -2,9 +2,6 @@ const config = require('../../config/config')
 
 const sfdx = require('sfdx')
 
-const shell = require('shelljs')
-const yargs = require('yargs')
-
 exports.command = ['toproduction [prodorgname] [pushto|to|t] [force|f]', 'toprod', 'prod']
 
 exports.describe = 'Converts local code and deploys it to a non-scratch org.'

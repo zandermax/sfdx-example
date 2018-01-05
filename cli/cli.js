@@ -26,7 +26,7 @@ yargs.command(
 )
 
 // Import all commands
-for (command of Object.keys(sfdx)) {
+for (let command of Object.keys(sfdx)) {
   yargs.command(sfdx[command].yargs)
 }
 

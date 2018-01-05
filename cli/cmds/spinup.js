@@ -2,9 +2,6 @@ const config = require('../../config/config')
 
 const sfdx = require('sfdx')
 
-const shell = require('shelljs')
-const yargs = require('yargs')
-
 exports.command = ['spinup [alias|org|a] [days|d] [open|o]', 'su']
 
 exports.describe = 'Spins up a new scratch org and deploys local code into it.'
