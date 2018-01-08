@@ -20,6 +20,11 @@ exports.builder = yargs => {
       describe: 'Number of days to keep the new scratch org',
       type: 'number'
     })
+    .option('defaultorg', {
+      alias: ['f'],
+      describe: 'Sets the newly-created scratch org as the default',
+      type: 'boolean'
+    })
     .option('open', {
       alias: ['o'],
       describe: 'Opens the org in a browser after creating it and pushing code into it',
@@ -46,4 +51,5 @@ exports.handler = argv => {
     console.error('\n' + config.stars + 'ERROR pushing to new scratch org' + config.stars)
     console.error(pushOutput.stderr)
   }
+
 }
