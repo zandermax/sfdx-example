@@ -4,7 +4,7 @@ const sfdx = require('sfdx')
 const yargs = require('yargs')
 
 yargs.command(
-  '$0 [orgname] [alias|org|a]',
+  '$0 [orgname] [remote|r] [local|l] [alias|org|a]',
   'Performs SFDX commands. By default, this command lists the status of a connected org.',
   yargs => {
     yargs
