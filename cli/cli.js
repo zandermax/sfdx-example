@@ -44,7 +44,6 @@ yargs.commandDir('cmds')
 // Set all global command options
 yargs
   .wrap(yargs.terminalWidth())
-  .version(false)
   .help()
   .alias('h', 'help')
   .strict().argv
