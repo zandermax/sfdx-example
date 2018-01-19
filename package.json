@@ -4,7 +4,7 @@
   "description": "Example implementation of sfdx",
   "main": "index.js",
   "bin": {
-    "dx": "cli/cli.js"
+    "ssdx": "cli/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,7 @@
   "author": "Zander Maxwell",
   "license": "ISC",
   "dependencies": {
-    "sfdx": "^1.1.1",
+    "sfdx": "^1.3.2",
     "shelljs": "^0.7.8",
     "yargs": "^10.1.1"
   }
