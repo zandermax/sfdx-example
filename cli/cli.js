@@ -18,13 +18,11 @@ yargs.command(
       .option('remote', {
         alias: ['r'],
         describe: 'Fetch only changes made remotely',
-        conflicts: 'local',
         type: 'boolean'
       })
       .option('local', {
         alias: ['l'],
         describe: 'Fetch only changes in code locally',
-        conflicts: 'remote',
         type: 'boolean'
       })
       .example('$0 status MyOrg', "- Gets the local and remote code status of 'MyOrg'")
