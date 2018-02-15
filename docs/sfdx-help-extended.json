@@ -3207,14 +3207,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "label",
