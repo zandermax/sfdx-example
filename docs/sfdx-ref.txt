@@ -72,7 +72,7 @@
   force:project:upgrade              # update project config files to the latest format
   force:schema:sobject:describe      # describe an object
   force:schema:sobject:list          # list all objects of a specified category
-  force:source:convert               # convert Salesforce DX source into the Metadata API source format
+  force:source:convert               # convert Salesforce DX source into Metadata API format
   force:source:open                  # edit a Lightning Page with Lightning App Builder
   force:source:pull                  # pull source from the scratch org to the project
   force:source:push                  # push source to an org from the project
