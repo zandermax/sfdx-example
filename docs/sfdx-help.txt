@@ -2074,7 +2074,7 @@ Examples:
 
 
 === force:package2:version:update
-Usage: sfdx force:package2:version:update -i <id> [-n <string>] [-d <string>] [-b <string>] [-t <string>] [-k <string>] [-s] [-v <string>] [--json] [--loglevel <string>] 
+Usage: sfdx force:package2:version:update -i <id> [-n <string>] [-d <string>] [-b <string>] [-t <string>] [-k <string>] [-s] [-p] [-v <string>] [--json] [--loglevel <string>] 
 
 update a second-generation package version
 
@@ -2086,6 +2086,9 @@ Flags:
                                                   key-protected package
                                                   (default: null)
  -n, --name NAME                                  the package version name
+ -p, --noprompt                                   no prompt to confirm setting
+                                                  the package version as
+                                                  released
  -i, --package2versionid PACKAGE2VERSIONID        (required) the package version
                                                   ID (starts wtih 05i)
  -s, --setasreleased                              set the package version as
