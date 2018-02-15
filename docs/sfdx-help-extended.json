@@ -3084,7 +3084,7 @@
       "command": "open",
       "description": "edit a Lightning Page with Lightning App Builder",
       "longDescription": "Opens the specified Lightning Page in Lightning App Builder. Lightning Page files have the suffix .flexipage-meta.xml, and are stored in the flexipages directory. If you specify a different type of file, this command opens your org’s home page.",
-      "help": "If Force.com IDE 2 is installed, the file opens in an embedded browser within the IDE. If Force.com IDE 2 isn’t installed, the file opens in your default browser.\nIf no browser-based editor is available for the selected file, this command opens your org’s home page.\nTo generate a URL for the browser-based editor but not open the editor, use --urlonly.\n\nExamples:\n   $ sfdx force:source:open -f Property_Record_Page.flexipage-meta.xml\n   $ sfdx force:source:open -f Property_Record_Page.flexipage-meta.xml -r",
+      "help": "The file opens in your default browser.\nIf no browser-based editor is available for the selected file, this command opens your org’s home page.\nTo generate a URL for the browser-based editor but not open the editor, use --urlonly.\n\nExamples:\n   $ sfdx force:source:open -f Property_Record_Page.flexipage-meta.xml\n   $ sfdx force:source:open -f Property_Record_Page.flexipage-meta.xml -r",
       "requiresProject": true,
       "args": [],
       "flags": [
