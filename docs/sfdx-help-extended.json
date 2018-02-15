@@ -1103,8 +1103,8 @@
         {
           "name": "containeroptions",
           "char": "o",
-          "description": "[*Managed | Unlocked | Locked] container options for the package (Managed=DeveloperManagedSubscriberManaged, Unlocked=DeveloperControlledSubscriberEditable, Locked=DeveloperControlledSubscriberLocked)",
-          "longDescription": "Container options for the second-generation package. \nManaged is default. Other options include Unlocked and Locked. (Managed=DeveloperManagedSubscriberManaged, Unlocked=DeveloperControlledSubscriberEditable, Locked=DeveloperControlledSubscriberLocked). \nThese options determine the upgrade and editability rules.",
+          "description": "[*Managed | Unlocked | Locked] container options for the package2 (Managed=DeveloperManagedSubscriberManaged, Unlocked=DeveloperControlledSubscriberEditable, Locked=DeveloperControlledSubscriberLocked)",
+          "longDescription": "Container options for the package2. \nManaged is default. Other options include Unlocked and Locked. (Managed=DeveloperManagedSubscriberManaged, Unlocked=DeveloperControlledSubscriberEditable, Locked=DeveloperControlledSubscriberLocked). \nThese options determine the upgrade and editability rules.",
           "hasValue": true,
           "required": false,
           "type": "string"
