@@ -868,6 +868,50 @@ Examples:
    $ sfdx force:apex:log:list -u me@my.org
 
 
+=== force:auth:logout
+Usage: sfdx force:auth:logout [-a] [-p] [-u <string>] [--json] [--loglevel <string>] 
+
+log out from authorized orgs
+
+Flags:
+ -a, --all                            include all authenticated orgs
+ -p, --noprompt                       do not prompt for confirmation
+ -u, --targetusername TARGETUSERNAME  username or alias for the target org;
+                                      overrides default target org
+ --json                               format output as json
+ --loglevel LOGLEVEL                  logging level for this command invocation
+                                      (error*,trace,debug,info,warn,fatal)
+
+By default, this command logs you out from your default scratch org.
+Examples:
+   $ sfdx force:auth:logout -u me@my.org
+   $ sfdx force:auth:logout -a
+   $ sfdx force:auth:logout -p
+
+
+=== force:lightning:lwc:create
+Usage: sfdx force:lightning:lwc:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>] 
+
+create an LWC bundle
+
+Flags:
+ -a, --apiversion APIVERSION  API version number (42.0*,41.0)
+ -n, --lwcname LWCNAME        (required) name of the generated LWC bundle
+ -d, --outputdir OUTPUTDIR    folder for saving the created files
+ -t, --template TEMPLATE      template to use for file creation
+                              (DefaultLightningLWC*)
+ --json                       JSON output
+ --loglevel LOGLEVEL          logging level for this command invocation
+                              (error*,trace,debug,info,warn,fatal)
+
+If not supplied, the apiversion, template, and outputdir use default values.
+The outputdir can be an absolute path or relative to the current working directory.
+
+Examples:
+   $ sfdx force:lightning:lwc:create -n mylwc
+   $ sfdx force:lightning:lwc:create -n mylwc -d lwc
+
+
 === force:org:open
 Usage: sfdx force:org:open [-p <string>] [-r] [-u <string>] [--json] [--loglevel <string>] 
 
