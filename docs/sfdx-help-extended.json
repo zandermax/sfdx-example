@@ -3491,6 +3491,15 @@
           "type": "flag"
         },
         {
+          "name": "replacetokens",
+          "char": "r",
+          "description": "replaces tokens in source files prior to deployment",
+          "longDescription": "Replaces tokens in source files prior to deployment.",
+          "required": false,
+          "type": "flag",
+          "hidden": true
+        },
+        {
           "name": "wait",
           "char": "w",
           "description": "wait time for command to finish in minutes (default: 33) (default:33, min:1)",
