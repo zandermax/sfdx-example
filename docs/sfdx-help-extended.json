@@ -6158,6 +6158,15 @@
           "default": "0"
         },
         {
+          "name": "buildinstance",
+          "char": "s",
+          "description": "the instance where the package version will be created——for example, NA50",
+          "longDescription": "The instance where the package version will be created——for example, NA50.",
+          "hasValue": true,
+          "required": false,
+          "type": "string"
+        },
+        {
           "name": "targetdevhubusername",
           "char": "v",
           "description": "username or alias for the dev hub org; overrides default dev hub org",
