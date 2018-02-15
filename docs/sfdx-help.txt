@@ -1086,7 +1086,7 @@ If the command detects a conflict, it displays the conflicts but does not comple
 
 
 === force:data:record:create
-Usage: sfdx force:data:record:create -s <string> -v <string> [-t] [-u <string>] [--json] [--loglevel <string>] 
+Usage: sfdx force:data:record:create -s <string> -v <string> [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>] 
 
 create a record
 
@@ -1101,6 +1101,8 @@ Flags:
  --json                               format output as json
  --loglevel LOGLEVEL                  logging level for this command invocation
                                       (error*,trace,debug,info,warn,fatal)
+ --perfloglevel PERFLOGLEVEL          get API performance data.
+                                      (basic*,detailed)
 
 The format of a field-value pair is <fieldName>=<value>.
 Enclose all field-value pairs in one set of double quotation marks, delimited by spaces.
@@ -1111,10 +1113,11 @@ Examples:
    $ sfdx force:data:record:create -s Account -v "Name='Universal Containers'"
    $ sfdx force:data:record:create -s Account -v "Name='Universal Containers' Website=www.example.com"
    $ sfdx force:data:record:create -t -s TraceFlag -v "DebugLevelId=7dl170000008U36AAE StartDate=2017-12-01T00:26:04.000+0000 ExpirationDate=2017-12-01T00:56:04.000+0000 LogType=CLASS_TRACING TracedEntityId=01p17000000R6bLAAS"
+   $ sfdx force:data:record:create -s Account -v "Name=Acme" --perfloglevel "basic" --json
 
 
 === force:data:record:delete
-Usage: sfdx force:data:record:delete -s <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>] 
+Usage: sfdx force:data:record:delete -s <string> [-i <id>] [-w <string>] [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>] 
 
 delete a record
 
@@ -1130,6 +1133,8 @@ Flags:
  --json                               format output as json
  --loglevel LOGLEVEL                  logging level for this command invocation
                                       (error*,trace,debug,info,warn,fatal)
+ --perfloglevel PERFLOGLEVEL          get API performance data.
+                                      (basic*,detailed)
 
 Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.
 The format of a field-value pair is <fieldName>=<value>.
@@ -1141,11 +1146,11 @@ Examples:
    $ sfdx force:data:record:delete -s Account -w "Name=Acme"
    $ sfdx force:data:record:delete -s Account -w "Name='Universal Containers'"
    $ sfdx force:data:record:delete -s Account -w "Name='Universal Containers' Phone='(123) 456-7890'"
-   $ sfdx force:data:record:delete -t -s TraceFlag -i 7tf170000009cU6AAI
+   $ sfdx force:data:record:delete -t -s TraceFlag -i 7tf170000009cU6AAI --perfloglevel "basic" --json
 
 
 === force:data:record:get
-Usage: sfdx force:data:record:get -s <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>] 
+Usage: sfdx force:data:record:get -s <string> [-i <id>] [-w <string>] [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>] 
 
 view a record
 
@@ -1161,6 +1166,8 @@ Flags:
  --json                               format output as json
  --loglevel LOGLEVEL                  logging level for this command invocation
                                       (error*,trace,debug,info,warn,fatal)
+ --perfloglevel PERFLOGLEVEL          get API performance data.
+                                      (basic*,detailed)
 
 Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.
 The format of a field-value pair is <fieldName>=<value>.
@@ -1172,11 +1179,11 @@ Examples:
    $ sfdx force:data:record:get -s Account -w "Name=Acme"
    $ sfdx force:data:record:get -s Account -w "Name='Universal Containers'"
    $ sfdx force:data:record:get -s Account -w "Name='Universal Containers' Phone='(123) 456-7890'"
-   $ sfdx force:data:record:get -t -s TraceFlag -i 7tf170000009cUBAAY
+   $ sfdx force:data:record:get -t -s TraceFlag -i 7tf170000009cUBAAY --perfloglevel "basic" --json
 
 
 === force:data:record:update
-Usage: sfdx force:data:record:update -s <string> -v <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>] 
+Usage: sfdx force:data:record:update -s <string> -v <string> [-i <id>] [-w <string>] [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>] 
 
 update a record
 
@@ -1194,6 +1201,8 @@ Flags:
  --json                               format output as json
  --loglevel LOGLEVEL                  logging level for this command invocation
                                       (error*,trace,debug,info,warn,fatal)
+ --perfloglevel PERFLOGLEVEL          get API performance data.
+                                      (basic*,detailed)
 
 The format of a field-value pair is <fieldName>=<value>.
 Enclose all field-value pairs in one set of double quotation marks, delimited by spaces.
@@ -1204,6 +1213,7 @@ Examples:
    $ sfdx force:data:record:update -s Account -w "Name='Old Acme'" -v "Name='New Acme'"
    $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v "Name='Acme III' Website=www.example.com"
    $ sfdx force:data:record:update -t -s TraceFlag -i 7tf170000009cUBAAY -v "ExpirationDate=2017-12-01T00:58:04.000+0000"
+   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v "Name=NewAcme" --perfloglevel "basic" --json
 
 
 === force:mdapi:retrieve
@@ -1440,6 +1450,8 @@ Flags:
  --json                               format output as json
  --loglevel LOGLEVEL                  logging level for this command invocation
                                       (error*,trace,debug,info,warn,fatal)
+ --perfloglevel PERFLOGLEVEL          get API performance data.
+                                      (basic*,detailed)
 
 When you execute this command in a project, it executes the query against the data in your default scratch org.
 
