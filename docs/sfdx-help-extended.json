@@ -6761,6 +6761,15 @@
           "type": "flag"
         },
         {
+          "name": "noprompt",
+          "char": "p",
+          "description": "no prompt to confirm setting the package version as released",
+          "longDescription": "No prompt to confirm setting the package version as released.",
+          "hasValue": false,
+          "required": false,
+          "type": "flag"
+        },
+        {
           "name": "targetdevhubusername",
           "char": "v",
           "description": "username or alias for the dev hub org; overrides default dev hub org",
