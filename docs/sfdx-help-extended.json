@@ -108,14 +108,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "json",
@@ -453,14 +453,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "json",
@@ -552,8 +552,8 @@
           "required": false,
           "hidden": false,
           "type": "flag",
-          "description": "list only docopts usage strings",
-          "longDescription": "Lists docopts usage strings instead of command names and descriptions."
+          "description": "list only docopt usage strings",
+          "longDescription": "Lists docopt usage strings instead of command names and descriptions."
         },
         {
           "name": "json",
@@ -645,14 +645,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "label",
@@ -757,14 +757,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "json",
@@ -803,9 +803,9 @@
       "usage": "force:lightning:component:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>]"
     },
     {
-      "description": "convert Metadata API source into the Salesforce DX source format",
-      "longDescription": "Converts source retrieved from Metadata API into the format used in Salesforce DX projects.",
-      "help": "To work with source that you retrieved via Metadata API using the Salesforce DX tools, convert the source to the Salesforce DX format using \"sfdx force:mdapi:convert\".\n\nTo convert the source back to the Metadata API format, so that you can deploy it using \"sfdx force:mdapi:deploy\", run \"sfdx force:source:convert\".\n\nExamples:\n   $ sfdx force:mdapi:convert -r <path to source>\n   $ sfdx force:mdapi:convert -r <path to source> -d <path to outputdir>",
+      "description": "convert metadata from the Metadata API format into the Salesforce DX format",
+      "longDescription": "Converts metadata retrieved via Metadata API into the source format used in Salesforce DX projects.",
+      "help": "To work with metadata that you retrieved via Metadata API using the Salesforce DX tools, convert the metadata to the Salesforce DX source format using \"sfdx force:mdapi:convert\".\n\nTo convert the source back to the Metadata API format, so that you can deploy it using \"sfdx force:mdapi:deploy\", run \"sfdx force:source:convert\".\n\nExamples:\n   $ sfdx force:mdapi:convert -r <path to source>\n   $ sfdx force:mdapi:convert -r <path to source> -d <path to outputdir>",
       "initializeMetadataRegistry": true,
       "showProgress": true,
       "requiresUsername": false,
@@ -813,8 +813,8 @@
         {
           "name": "rootdir",
           "char": "r",
-          "description": "the root directory containing the Metadata API source",
-          "longDescription": "The root directory that contains the source you retrieved using Metadata API.",
+          "description": "the root directory containing the Metadata API–formatted metadata",
+          "longDescription": "The root directory that contains the metadata you retrieved using Metadata API.",
           "required": true,
           "hasValue": true,
           "type": "directory"
@@ -822,7 +822,7 @@
         {
           "name": "outputdir",
           "char": "d",
-          "description": "the output directory to store the sfdx source",
+          "description": "the output directory to store the Salesforce DX–formatted source",
           "longDescription": "The directory to store your source in after it’s converted to the Salesforce DX format. Can be an absolute or relative path.",
           "required": false,
           "hasValue": true,
@@ -864,9 +864,9 @@
       "usage": "force:mdapi:convert -r <directory> [-d <directory>] [--json] [--loglevel <string>]"
     },
     {
-      "description": "convert Salesforce DX source into the Metadata API source format",
-      "longDescription": "Converts source in a Salesforce DX project into source that you can deploy using Metadata API.",
-      "help": "To convert Salesforce DX–formatted source into a format that you can deploy using Metadata API, run \"sfdx force:source:convert\". Then deploy the source using \"sfdx force:mdapi:deploy\".\n\nTo convert Metadata API–formatted source into the Salesforce DX format, run \"sfdx force:mdapi:convert\".\n\nExamples:\n   $ sfdx force:source:convert -r <path to source>\n   $ sfdx force:source:convert -r <path to source> -d <path to output dir>",
+      "description": "convert Salesforce DX source into Metadata API format",
+      "longDescription": "Converts source in a Salesforce DX project into metadata that you can deploy using Metadata API.",
+      "help": "To convert Salesforce DX–formatted source into a format that you can deploy using Metadata API, run \"sfdx force:source:convert\". Then deploy the metadata using \"sfdx force:mdapi:deploy\".\n\nTo convert Metadata API–formatted source into the Salesforce DX format, run \"sfdx force:mdapi:convert\".\n\nTo specify a package name that includes spaces, enclose the name in single quotes.\n\nExamples:\n   $ sfdx force:source:convert -r <path to source>\n   $ sfdx force:source:convert -r <path to source> -d <path to output dir> -n 'My Package'",
       "initializeMetadataRegistry": true,
       "requiresUsername": false,
       "showProgress": true,
@@ -875,7 +875,7 @@
           "name": "rootdir",
           "char": "r",
           "description": "the source directory for the source to be converted",
-          "longDescription": "The directory that contains the source to convert.",
+          "longDescription": "The directory that contains the Salesforce DX–formatted source to convert.",
           "required": false,
           "hasValue": true,
           "type": "directory"
@@ -883,8 +883,8 @@
         {
           "name": "outputdir",
           "char": "d",
-          "description": "the output directory to export the Metadata API source to",
-          "longDescription": "The output directory to export the Metadata API source to.",
+          "description": "the output directory to export the Metadata API–formatted metadata to",
+          "longDescription": "The output directory to export the Metadata API–formatted metadata to.",
           "required": false,
           "hasValue": true,
           "type": "directory"
@@ -892,8 +892,8 @@
         {
           "name": "packagename",
           "char": "n",
-          "description": "the name of the package to associate with the Metadata API source",
-          "longDescription": "The name of the package to associate with the Metadata API source.",
+          "description": "the name of the package to associate with the Metadata API–formatted metadata",
+          "longDescription": "The name of the package to associate with the Metadata API–formatted metadata.",
           "required": false,
           "hasValue": true,
           "type": "string"
@@ -1087,7 +1087,7 @@
     {
       "description": "create a second-generation package",
       "longDescription": "Creates a second-generation package.",
-      "help": "First, use this command to create a second-generation package. Then create a package version.\n\nExamples:\n   $ sfdx force:package2:create -n PackageName -d 'My New Package' -o Locked\n\nRun 'sfdx force:package2:list' to list all second-generation packages in the Dev Hub org.",
+      "help": "First, use this command to create a second-generation package. Then create a package version.\n\nTo create a package with spaces in its name or description, enclose those values in single quotes.\n\nExamples:\n   $ sfdx force:package2:create -n PackageName -d 'My New Package' -o Unlocked\n\nRun 'sfdx force:package2:list' to list all second-generation packages in the Dev Hub org.",
       "orgType": "defaultdevhubusername",
       "supportsTargetDevHubUsername": true,
       "flags": [
@@ -1318,11 +1318,11 @@
           "hasValue": true,
           "required": false,
           "hidden": true,
-          "description": "source API version number (41.0*)",
+          "description": "source API version number (42.0*)",
           "longDescription": "The source API version for the project. The version defaults to the current release and will normally be defaulted.This is used to properly import or export metadata.",
           "type": "string",
           "values": [],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "namespace",
@@ -1870,14 +1870,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "json",
@@ -2275,14 +2275,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "json",
@@ -2323,7 +2323,7 @@
     {
       "description": "authorize an org using the JWT flow",
       "longDescription": "Authorizes a Salesforce org using the JWT flow.",
-      "help": "Authorizes a Salesforce org using a private key file that has been uploaded to a personal connected app.\n\nExamples:\n   $ sfdx force:auth:jwt:grant -u me@my.org -f <path to jwt key file> -i <OAuth client id>\n   $ sfdx force:auth:jwt:grant -u me@my.org -f <path to jwt key file> -i <OAuth client id> -s -a MyDefaultOrg",
+      "help": "Authorizes a Salesforce org using a private key file that has been uploaded to a personal connected app.\n\nIf you specify an --instanceurl value, this value overrides the sfdcLoginUrl value in your sfdx-project.json file. To specify a My Domain URL, use the format <yourdomain>.my.salesforce.com (not <yourdomain>.lightning.force.com).\n\nExamples:\n   $ sfdx force:auth:jwt:grant -u me@my.org -f <path to jwt key file> -i <OAuth client id>\n   $ sfdx force:auth:jwt:grant -u me@my.org -f <path to jwt key file> -i <OAuth client id> -s -a MyDefaultOrg\n   $ sfdx force:auth:jwt:grant -u me@acme.org -f <path to jwt key file> -i <OAuth client id> -r https://acme.my.salesforce.com",
       "requiresProject": false,
       "flags": [
         {
@@ -3763,7 +3763,7 @@
           "name": "retrievetargetdir",
           "char": "r",
           "description": "directory root for the retrieved files",
-          "longDescription": "The root of the directory structure where the retrieved zip or metadata files are put.",
+          "longDescription": "The root of the directory structure where the retrieved .zip or metadata files are put.",
           "required": true,
           "hasValue": true,
           "type": "directory"
@@ -3889,7 +3889,7 @@
           "name": "retrievetargetdir",
           "char": "r",
           "description": "directory root for the retrieved files",
-          "longDescription": "The root of the directory structure where the retrieved zip or metadata files are put.",
+          "longDescription": "The root of the directory structure where the retrieved .zip or metadata files are put.",
           "required": false,
           "hasValue": true,
           "type": "directory"
@@ -5348,14 +5348,14 @@
           "char": "a",
           "hasValue": true,
           "required": false,
-          "description": "API version number (41.0*,40.0)",
+          "description": "API version number (42.0*,41.0)",
           "longDescription": "The API version of the created source.",
           "type": "string",
           "values": [
-            "41.0",
-            "40.0"
+            "42.0",
+            "41.0"
           ],
-          "default": "41.0"
+          "default": "42.0"
         },
         {
           "name": "sobject",
