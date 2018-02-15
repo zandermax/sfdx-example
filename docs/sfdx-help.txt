@@ -23,7 +23,7 @@ Usage: sfdx force:lightning:app:create -n <string> [-t <string>] [-d <string>] [
 create a Lightning app
 
 Flags:
- -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION  API version number (42.0*,41.0)
  -n, --appname APPNAME        (required) name of the generated Lightning app
  -d, --outputdir OUTPUTDIR    folder for saving the created files
  -t, --template TEMPLATE      template to use for file creation
@@ -92,15 +92,15 @@ Examples:
 
 
 === force:data:bulk:upsert
-Usage: sfdx force:data:bulk:upsert -s <string> -f <file> [-i <id>] [-w <minutes>] [-u <string>] [--json] [--loglevel <string>] 
+Usage: sfdx force:data:bulk:upsert -s <string> -f <file> -i <id> [-w <minutes>] [-u <string>] [--json] [--loglevel <string>] 
 
 bulk upsert records from a CSV file
 
 Flags:
  -f, --csvfile CSVFILE                (required) the path to the CSV file that
                                       defines the records to upsert
- -i, --externalid EXTERNALID          the column name of the external ID; if not
-                                      provided, an arbitrary ID is used
+ -i, --externalid EXTERNALID          (required) the column name of the external
+                                      ID
  -s, --sobjecttype SOBJECTTYPE        (required) the sObject type of the records
                                       you want to upsert
  -u, --targetusername TARGETUSERNAME  username or alias for the target org;
@@ -129,7 +129,7 @@ Usage: sfdx force:apex:class:create -n <string> [-t <string>] [-d <string>] [-a 
 create an Apex class
 
 Flags:
- -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION  API version number (42.0*,41.0)
  -n, --classname CLASSNAME    (required) name of the generated Apex class
  -d, --outputdir OUTPUTDIR    folder for saving the created files
  -t, --template TEMPLATE      template to use for file creation
@@ -166,7 +166,7 @@ Usage: sfdx force:doc:commands:list [-u] [--json] [--loglevel <string>]
 list the force commands
 
 Flags:
- -u, --usage          list only docopts usage strings
+ -u, --usage          list only docopt usage strings
  --json               format output as json
  --loglevel LOGLEVEL  logging level for this command invocation
                       (error*,trace,debug,info,warn,fatal)
@@ -180,7 +180,7 @@ Usage: sfdx force:visualforce:component:create -n <string> -l <string> [-t <stri
 create a Visualforce component
 
 Flags:
- -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION        API version number (42.0*,41.0)
  -n, --componentname COMPONENTNAME  (required) name of the generated Visualforce
                                     component
  -l, --label LABEL                  (required) Visualforce component label
@@ -206,7 +206,7 @@ Usage: sfdx force:lightning:component:create -n <string> [-t <string>] [-d <stri
 create a Lightning component
 
 Flags:
- -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION        API version number (42.0*,41.0)
  -n, --componentname COMPONENTNAME  (required) name of the generated Lightning
                                     component
  -d, --outputdir OUTPUTDIR          folder for saving the created files
@@ -227,17 +227,18 @@ Examples:
 === force:mdapi:convert
 Usage: sfdx force:mdapi:convert -r <directory> [-d <directory>] [--json] [--loglevel <string>] 
 
-convert Metadata API source into the Salesforce DX source format
+convert metadata from the Metadata API format into the Salesforce DX format
 
 Flags:
- -d, --outputdir OUTPUTDIR  the output directory to store the sfdx source
+ -d, --outputdir OUTPUTDIR  the output directory to store the Salesforce
+                            DX–formatted source
  -r, --rootdir ROOTDIR      (required) the root directory containing the
-                            Metadata API source
+                            Metadata API–formatted metadata
  --json                     format output as json
  --loglevel LOGLEVEL        logging level for this command invocation
                             (error*,trace,debug,info,warn,fatal)
 
-To work with source that you retrieved via Metadata API using the Salesforce DX tools, convert the source to the Salesforce DX format using "sfdx force:mdapi:convert".
+To work with metadata that you retrieved via Metadata API using the Salesforce DX tools, convert the metadata to the Salesforce DX source format using "sfdx force:mdapi:convert".
 
 To convert the source back to the Metadata API format, so that you can deploy it using "sfdx force:mdapi:deploy", run "sfdx force:source:convert".
 
@@ -249,26 +250,28 @@ Examples:
 === force:source:convert
 Usage: sfdx force:source:convert [-r <directory>] [-d <directory>] [-n <string>] [--json] [--loglevel <string>] 
 
-convert Salesforce DX source into the Metadata API source format
+convert Salesforce DX source into Metadata API format
 
 Flags:
- -d, --outputdir OUTPUTDIR      the output directory to export the Metadata API
-                                source to
+ -d, --outputdir OUTPUTDIR      the output directory to export the Metadata
+                                API–formatted metadata to
  -n, --packagename PACKAGENAME  the name of the package to associate with the
-                                Metadata API source
+                                Metadata API–formatted metadata
  -r, --rootdir ROOTDIR          the source directory for the source to be
                                 converted
  --json                         format output as json
  --loglevel LOGLEVEL            logging level for this command invocation
                                 (error*,trace,debug,info,warn,fatal)
 
-To convert Salesforce DX–formatted source into a format that you can deploy using Metadata API, run "sfdx force:source:convert". Then deploy the source using "sfdx force:mdapi:deploy".
+To convert Salesforce DX–formatted source into a format that you can deploy using Metadata API, run "sfdx force:source:convert". Then deploy the metadata using "sfdx force:mdapi:deploy".
 
 To convert Metadata API–formatted source into the Salesforce DX format, run "sfdx force:mdapi:convert".
 
+To specify a package name that includes spaces, enclose the name in single quotes.
+
 Examples:
    $ sfdx force:source:convert -r <path to source>
-   $ sfdx force:source:convert -r <path to source> -d <path to output dir>
+   $ sfdx force:source:convert -r <path to source> -d <path to output dir> -n 'My Package'
 
 
 === force:org:create
@@ -538,7 +541,7 @@ Usage: sfdx force:lightning:event:create -n <string> [-t <string>] [-d <string>]
 create a Lightning event
 
 Flags:
- -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION  API version number (42.0*,41.0)
  -n, --eventname EVENTNAME    (required) name of the generated Lightning event
  -d, --outputdir OUTPUTDIR    folder for saving the created files
  -t, --template TEMPLATE      template to use for file creation
@@ -670,7 +673,7 @@ Usage: sfdx force:lightning:interface:create -n <string> [-t <string>] [-d <stri
 create a Lightning interface
 
 Flags:
- -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION        API version number (42.0*,41.0)
  -n, --interfacename INTERFACENAME  (required) name of the generated Lightning
                                     interface
  -d, --outputdir OUTPUTDIR          folder for saving the created files
@@ -919,7 +922,7 @@ Usage: sfdx force:visualforce:page:create -n <string> -l <string> [-t <string>] 
 create a Visualforce page
 
 Flags:
- -a, --apiversion APIVERSION  API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION  API version number (42.0*,41.0)
  -l, --label LABEL            (required) Visualforce page label
  -d, --outputdir OUTPUTDIR    folder for saving the created files
  -n, --pagename PAGENAME      (required) name of the generated Visualforce page
@@ -1161,7 +1164,7 @@ retrieve metadata from an org using Metadata API
 
 Flags:
  -a, --apiversion APIVERSION                target API version for the retrieve
-                                            (default 41.0)
+                                            (default 42.0)
  -i, --jobid JOBID                          WARNING: The flag "jobid" has been
                                             deprecated and will be removed in
                                             v41.01.0 or later. Instead, use
@@ -1636,14 +1639,14 @@ Usage: sfdx force:apex:trigger:create -n <string> [-t <string>] [-d <string>] [-
 create an Apex trigger
 
 Flags:
- -a, --apiversion APIVERSION        API version number (41.0*,40.0)
+ -a, --apiversion APIVERSION        API version number (42.0*,41.0)
  -d, --outputdir OUTPUTDIR          folder for saving the created files
  -s, --sobject SOBJECT              sObject to create a trigger on (SOBJECT*)
  -t, --template TEMPLATE            template to use for file creation
                                     (ApexTrigger*)
  -e, --triggerevents TRIGGEREVENTS  events that fire the trigger (before
-                                    insert*,before upsert,before delete,after
-                                    insert,after upsert,after delete,after
+                                    insert*,before update,before delete,after
+                                    insert,after update,after delete,after
                                     undelete)
  -n, --triggername TRIGGERNAME      (required) name of the generated Apex
                                     trigger
