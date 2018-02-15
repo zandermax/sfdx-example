@@ -5104,28 +5104,39 @@
     {
       "description": "invoke Apex tests",
       "longDescription": "Runs Apex tests.",
-      "help": "By default, runs all Apex tests in the org’s namespace.\nTo run specific tests, specify the class names or suite names or set a --testlevel value.\n\nExamples:\n   $ sfdx force:apex:test:run\n   $ sfdx force:apex:test:run -n MyClassTest,MyOtherClassTest -r human\n   $ sfdx force:apex:test:run -s MySuite,MyOtherSuite -c --json\n   $ sfdx force:apex:test:run -l RunLocalTests -d <path to outputdir> -u me@my.org",
+      "help": "By default, runs all Apex tests in the org’s namespace.\n\nTo run specific test classes, specify class names or suite names, or set a --testlevel value.\n\nTo run specific test methods, use --tests.\n\nExamples:\n   $ sfdx force:apex:test:run\n   $ sfdx force:apex:test:run -n MyClassTest,MyOtherClassTest -r human\n   $ sfdx force:apex:test:run -s MySuite,MyOtherSuite -c --json\n   $ sfdx force:apex:test:run -t MyClassTest.testCoolFeature,MyClassTest.testAwesomeFeature,AnotherClassTest,namespace.TheirClassTest.testThis -r human\n   $ sfdx force:apex:test:run -l RunLocalTests -d <path to outputdir> -u me@my.org",
       "requiresProject": false,
       "supportsTargetUsername": true,
       "flags": [
         {
           "name": "classnames",
           "char": "n",
-          "description": "comma-separated list of Apex test class names to execute",
-          "longDescription": "Comma-separated list of Apex test class names to execute. You can’t specify both class names and suite names.",
+          "description": "comma-separated list of Apex test class names to run",
+          "longDescription": "Comma-separated list of Apex test class names to run. You can specify only one of classnames, suitenames, or tests.",
           "hasValue": true,
           "required": false,
           "type": "string",
           "array": true,
           "xor": [
-            "suitenames"
+            "suitenames",
+            "tests"
           ]
         },
         {
           "name": "suitenames",
           "char": "s",
-          "description": "comma-separated list of Apex test suite names to execute",
-          "longDescription": "Comma-separated list of Apex test suite names to execute. You can’t specify both class names and suite names.",
+          "description": "comma-separated list of Apex test suite names to run",
+          "longDescription": "Comma-separated list of Apex test suite names to run. You can only specify one of classnames, suitenames, or tests.",
+          "hasValue": true,
+          "required": false,
+          "type": "string",
+          "array": true
+        },
+        {
+          "name": "tests",
+          "char": "t",
+          "description": "comma-separated list of Apex test class names or IDs and, if applicable, test methods to run",
+          "longDescription": "Comma-separated list of Apex test class names or IDs and test methods, if applicable, to run. You can only specify one of classnames, suitenames, or tests.",
           "hasValue": true,
           "required": false,
           "type": "string",
@@ -5260,7 +5271,7 @@
       "command": "test:run",
       "topic": "force:apex",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:apex:test:run (-n <string>... | -s <string>...) [-c] [-d <directory>] [-l <string>] [-r <string>] [-y] [-u <string>] [--json] [--loglevel <string>] [--verbose]"
+      "usage": "force:apex:test:run (-n <string>... | -s <string>... | -t <string>...) [-c] [-d <directory>] [-l <string>] [-r <string>] [-y] [-u <string>] [--json] [--loglevel <string>] [--verbose]"
     },
     {
       "description": "invoke Lightning component tests",
