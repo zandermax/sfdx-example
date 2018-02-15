@@ -6810,7 +6810,7 @@
       "topic": "force:package2",
       "requiresProject": true,
       "supportsTargetUsername": false,
-      "usage": "force:package2:version:update -i <id> [-n <string>] [-d <string>] [-b <string>] [-t <string>] [-k <string>] [-s] [-v <string>] [--json] [--loglevel <string>]"
+      "usage": "force:package2:version:update -i <id> [-n <string>] [-d <string>] [-b <string>] [-t <string>] [-k <string>] [-s] [-p] [-v <string>] [--json] [--loglevel <string>]"
     },
     {
       "description": "authorize an org using the web login flow",
