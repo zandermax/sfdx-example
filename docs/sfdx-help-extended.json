@@ -4506,7 +4506,7 @@
       "command": "sobject:describe",
       "description": "describe an object",
       "longDescription": "Displays the metadata for a standard or custom object.",
-      "help": "Examples:\n   $ sfdx force:schema:sobject:describe -s Account\n   $ sfdx force:schema:sobject:describe -s MyObject__c",
+      "help": "Examples:\n   $ sfdx force:schema:sobject:describe -s Account\n   $ sfdx force:schema:sobject:describe -s MyObject__c\n   $ sfdx force:schema:sobject:describe -s ApexClass -t",
       "requiresProject": false,
       "args": [],
       "flags": [
@@ -4519,6 +4519,16 @@
           "type": "string",
           "description": "the API name of the object to describe",
           "longDescription": "The API name of the object to describe."
+        },
+        {
+          "name": "usetoolingapi",
+          "char": "t",
+          "hasValue": false,
+          "required": false,
+          "hidden": false,
+          "type": "flag",
+          "description": "execute with Tooling API",
+          "longDescription": "Execute using Tooling API."
         },
         {
           "name": "targetusername",
@@ -4560,7 +4570,7 @@
       "supportsTargetUsername": true,
       "topic": "force:schema",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:schema:sobject:describe -s <string> [-u <string>] [--json] [--loglevel <string>]"
+      "usage": "force:schema:sobject:describe -s <string> [-t] [-u <string>] [--json] [--loglevel <string>]"
     },
     {
       "command": "sobject:list",
