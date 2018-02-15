@@ -335,11 +335,11 @@
           "name": "externalid",
           "char": "i",
           "hasValue": true,
-          "required": false,
+          "required": true,
           "hidden": false,
           "type": "id",
-          "description": "the column name of the external ID; if not provided, an arbitrary ID is used",
-          "longDescription": "The column name of the external ID. If not provided, an arbitrary ID is used."
+          "description": "the column name of the external ID",
+          "longDescription": "The column name of the external ID."
         },
         {
           "name": "wait",
@@ -391,7 +391,7 @@
       "supportsTargetUsername": true,
       "topic": "force:data",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:data:bulk:upsert -s <string> -f <file> [-i <id>] [-w <minutes>] [-u <string>] [--json] [--loglevel <string>]"
+      "usage": "force:data:bulk:upsert -s <string> -f <file> -i <id> [-w <minutes>] [-u <string>] [--json] [--loglevel <string>]"
     },
     {
       "command": "class:create",
