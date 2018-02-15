@@ -3548,7 +3548,7 @@
       "command": "record:create",
       "description": "create a record",
       "longDescription": "Creates and inserts a record.",
-      "help": "The format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:create -s Account -v \"Name=Acme\"\n   $ sfdx force:data:record:create -s Account -v \"Name='Universal Containers'\"\n   $ sfdx force:data:record:create -s Account -v \"Name='Universal Containers' Website=www.example.com\"\n   $ sfdx force:data:record:create -t -s TraceFlag -v \"DebugLevelId=7dl170000008U36AAE StartDate=2017-12-01T00:26:04.000+0000 ExpirationDate=2017-12-01T00:56:04.000+0000 LogType=CLASS_TRACING TracedEntityId=01p17000000R6bLAAS\"",
+      "help": "The format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:create -s Account -v \"Name=Acme\"\n   $ sfdx force:data:record:create -s Account -v \"Name='Universal Containers'\"\n   $ sfdx force:data:record:create -s Account -v \"Name='Universal Containers' Website=www.example.com\"\n   $ sfdx force:data:record:create -t -s TraceFlag -v \"DebugLevelId=7dl170000008U36AAE StartDate=2017-12-01T00:26:04.000+0000 ExpirationDate=2017-12-01T00:56:04.000+0000 LogType=CLASS_TRACING TracedEntityId=01p17000000R6bLAAS\"\n   $ sfdx force:data:record:create -s Account -v \"Name=Acme\" --perfloglevel \"basic\" --json",
       "requiresProject": false,
       "args": [],
       "flags": [
@@ -3581,6 +3581,19 @@
           "type": "flag",
           "description": "create the record with tooling api",
           "longDescription": "Create the record using Tooling API."
+        },
+        {
+          "name": "perfloglevel",
+          "description": "get API performance data. (basic*,detailed)",
+          "longDescription": "Gets data on API performance metrics from the server. The data is stored in $HOME/.sfdx/apiPerformanceLog.json",
+          "required": false,
+          "hasValue": true,
+          "values": [
+            "basic",
+            "detailed"
+          ],
+          "default": "basic",
+          "type": "string"
         },
         {
           "name": "targetusername",
@@ -3620,15 +3633,16 @@
         }
       ],
       "supportsTargetUsername": true,
+      "supportsPerfLogLevelFlag": true,
       "topic": "force:data",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:data:record:create -s <string> -v <string> [-t] [-u <string>] [--json] [--loglevel <string>]"
+      "usage": "force:data:record:create -s <string> -v <string> [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>]"
     },
     {
       "command": "record:delete",
       "description": "delete a record",
       "longDescription": "Deletes a single record.",
-      "help": "Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.\nThe format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:delete -s Account -i 001D000000Kv3dl\n   $ sfdx force:data:record:delete -s Account -w \"Name=Acme\"\n   $ sfdx force:data:record:delete -s Account -w \"Name='Universal Containers'\"\n   $ sfdx force:data:record:delete -s Account -w \"Name='Universal Containers' Phone='(123) 456-7890'\"\n   $ sfdx force:data:record:delete -t -s TraceFlag -i 7tf170000009cU6AAI",
+      "help": "Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.\nThe format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:delete -s Account -i 001D000000Kv3dl\n   $ sfdx force:data:record:delete -s Account -w \"Name=Acme\"\n   $ sfdx force:data:record:delete -s Account -w \"Name='Universal Containers'\"\n   $ sfdx force:data:record:delete -s Account -w \"Name='Universal Containers' Phone='(123) 456-7890'\"\n   $ sfdx force:data:record:delete -t -s TraceFlag -i 7tf170000009cU6AAI --perfloglevel \"basic\" --json",
       "requiresProject": false,
       "args": [],
       "flags": [
@@ -3673,6 +3687,19 @@
           "longDescription": "Delete the record using Tooling API."
         },
         {
+          "name": "perfloglevel",
+          "description": "get API performance data. (basic*,detailed)",
+          "longDescription": "Gets data on API performance metrics from the server. The data is stored in $HOME/.sfdx/apiPerformanceLog.json",
+          "required": false,
+          "hasValue": true,
+          "values": [
+            "basic",
+            "detailed"
+          ],
+          "default": "basic",
+          "type": "string"
+        },
+        {
           "name": "targetusername",
           "char": "u",
           "description": "username or alias for the target org; overrides default target org",
@@ -3710,15 +3737,16 @@
         }
       ],
       "supportsTargetUsername": true,
+      "supportsPerfLogLevelFlag": true,
       "topic": "force:data",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:data:record:delete -s <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>]"
+      "usage": "force:data:record:delete -s <string> [-i <id>] [-w <string>] [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>]"
     },
     {
       "command": "record:get",
       "description": "view a record",
       "longDescription": "Displays a single record.",
-      "help": "Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.\nThe format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:get -s Account -i 001D000000Kv3dl\n   $ sfdx force:data:record:get -s Account -w \"Name=Acme\"\n   $ sfdx force:data:record:get -s Account -w \"Name='Universal Containers'\"\n   $ sfdx force:data:record:get -s Account -w \"Name='Universal Containers' Phone='(123) 456-7890'\"\n   $ sfdx force:data:record:get -t -s TraceFlag -i 7tf170000009cUBAAY",
+      "help": "Specify an sObject type and either an ID or a list of <fieldName>=<value> pairs.\nThe format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:get -s Account -i 001D000000Kv3dl\n   $ sfdx force:data:record:get -s Account -w \"Name=Acme\"\n   $ sfdx force:data:record:get -s Account -w \"Name='Universal Containers'\"\n   $ sfdx force:data:record:get -s Account -w \"Name='Universal Containers' Phone='(123) 456-7890'\"\n   $ sfdx force:data:record:get -t -s TraceFlag -i 7tf170000009cUBAAY --perfloglevel \"basic\" --json",
       "requiresProject": false,
       "args": [],
       "flags": [
@@ -3763,6 +3791,19 @@
           "longDescription": "Retrieve the record using Tooling API."
         },
         {
+          "name": "perfloglevel",
+          "description": "get API performance data. (basic*,detailed)",
+          "longDescription": "Gets data on API performance metrics from the server. The data is stored in $HOME/.sfdx/apiPerformanceLog.json",
+          "required": false,
+          "hasValue": true,
+          "values": [
+            "basic",
+            "detailed"
+          ],
+          "default": "basic",
+          "type": "string"
+        },
+        {
           "name": "targetusername",
           "char": "u",
           "description": "username or alias for the target org; overrides default target org",
@@ -3800,15 +3841,16 @@
         }
       ],
       "supportsTargetUsername": true,
+      "supportsPerfLogLevelFlag": true,
       "topic": "force:data",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:data:record:get -s <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>]"
+      "usage": "force:data:record:get -s <string> [-i <id>] [-w <string>] [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>]"
     },
     {
       "command": "record:update",
       "description": "update a record",
       "longDescription": "Updates a single record.",
-      "help": "The format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v \"Name=NewAcme\"\n   $ sfdx force:data:record:update -s Account -w \"Name='Old Acme'\" -v \"Name='New Acme'\"\n   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v \"Name='Acme III' Website=www.example.com\"\n   $ sfdx force:data:record:update -t -s TraceFlag -i 7tf170000009cUBAAY -v \"ExpirationDate=2017-12-01T00:58:04.000+0000\"",
+      "help": "The format of a field-value pair is <fieldName>=<value>.\nEnclose all field-value pairs in one set of double quotation marks, delimited by spaces.\nEnclose values that contain spaces in single quotes.\n\nExamples:\n   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v \"Name=NewAcme\"\n   $ sfdx force:data:record:update -s Account -w \"Name='Old Acme'\" -v \"Name='New Acme'\"\n   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v \"Name='Acme III' Website=www.example.com\"\n   $ sfdx force:data:record:update -t -s TraceFlag -i 7tf170000009cUBAAY -v \"ExpirationDate=2017-12-01T00:58:04.000+0000\"\n   $ sfdx force:data:record:update -s Account -i 001D000000Kv3dl -v \"Name=NewAcme\" --perfloglevel \"basic\" --json",
       "requiresProject": false,
       "args": [],
       "flags": [
@@ -3863,6 +3905,19 @@
           "longDescription": "Update the record using Tooling API."
         },
         {
+          "name": "perfloglevel",
+          "description": "get API performance data. (basic*,detailed)",
+          "longDescription": "Gets data on API performance metrics from the server. The data is stored in $HOME/.sfdx/apiPerformanceLog.json",
+          "required": false,
+          "hasValue": true,
+          "values": [
+            "basic",
+            "detailed"
+          ],
+          "default": "basic",
+          "type": "string"
+        },
+        {
           "name": "targetusername",
           "char": "u",
           "description": "username or alias for the target org; overrides default target org",
@@ -3900,21 +3955,22 @@
         }
       ],
       "supportsTargetUsername": true,
+      "supportsPerfLogLevelFlag": true,
       "topic": "force:data",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:data:record:update -s <string> -v <string> [-i <id>] [-w <string>] [-t] [-u <string>] [--json] [--loglevel <string>]"
+      "usage": "force:data:record:update -s <string> -v <string> [-i <id>] [-w <string>] [-t] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>]"
     },
     {
       "description": "retrieve metadata from an org using Metadata API",
       "longDescription": "Uses Metadata API to retrieve a .zip of XML files that represent metadata from the targeted org. The default target username is the admin user for the default scratch org. You can retrieve and deploy up to 10,000 files or 400 MB (39 MB compressed) at one time.",
-      "help": "The default target username is the admin user for the default scratch org. You can retrieve and deploy up to 10,000 files or 400 MB (39 MB compressed) at one time.",
+      "help": "The default target username is the admin user for the default scratch org. You can retrieve and deploy up to 10,000 files or 400 MB (39 MB compressed) at one time.\n\nTo retrieve a package with a space in its name, enclose the name in single quotes.\n\nExample:\n   $ sfdx force:mdapi:retrieve -s -r ./mdapipkg -u <username> -p 'My Package'",
       "requiresProject": false,
       "supportsTargetUsername": true,
       "flags": [
         {
           "name": "apiversion",
           "char": "a",
-          "description": "target API version for the retrieve (default 41.0)",
+          "description": "target API version for the retrieve (default 42.0)",
           "longDescription": "Use to override the default, which is the latest version supported by your CLI plug-in, with the version in your package.xml file.",
           "required": false,
           "hasValue": true,
@@ -4570,7 +4626,7 @@
       "command": "soql:query",
       "description": "execute a SOQL query",
       "longDescription": "Executes a SOQL query.",
-      "help": "When you execute this command in a project, it executes the query against the data in your default scratch org.\n\nExamples:\n   $ sfdx force:data:soql:query -q \"SELECT Id, Name, Account.Name FROM Contact\"\n   $ sfdx force:data:soql:query -q \"SELECT Id, Name FROM Account WHERE ShippingState IN ('CA', 'NY')\"\n   $ sfdx force:data:soql:query -q \"SELECT Name FROM ApexTrigger\" -t",
+      "help": "When you execute this command in a project, it executes the query against the data in your default scratch org.\n\nExamples:\n   $ sfdx force:data:soql:query -q \"SELECT Id, Name, Account.Name FROM Contact\"\n   $ sfdx force:data:soql:query -q \"SELECT Id, Name FROM Account WHERE ShippingState IN ('CA', 'NY')\"\n   $ sfdx force:data:soql:query -q \"SELECT Name FROM ApexTrigger\" -t\n   $ sfdx force:data:soql:query -q \"SELECT Name FROM ApexTrigger\" --perfloglevel \"basic\" --json",
       "requiresProject": false,
       "args": [],
       "flags": [
@@ -4610,6 +4666,19 @@
           "default": "human"
         },
         {
+          "name": "perfloglevel",
+          "description": "get API performance data. (basic*,detailed)",
+          "longDescription": "Gets data on API performance metrics from the server. The data is stored in $HOME/.sfdx/apiPerformanceLog.json",
+          "required": false,
+          "hasValue": true,
+          "values": [
+            "basic",
+            "detailed"
+          ],
+          "default": "basic",
+          "type": "string"
+        },
+        {
           "name": "targetusername",
           "char": "u",
           "description": "username or alias for the target org; overrides default target org",
@@ -4647,9 +4716,10 @@
         }
       ],
       "supportsTargetUsername": true,
+      "supportsPerfLogLevelFlag": true,
       "topic": "force:data",
       "supportsTargetDevHubUsername": false,
-      "usage": "force:data:soql:query -q <string> [-t] [-r <string>] [-u <string>] [--json] [--loglevel <string>]"
+      "usage": "force:data:soql:query -q <string> [-t] [-r <string>] [--perfloglevel <string>] [-u <string>] [--json] [--loglevel <string>]"
     },
     {
       "description": "list local changes and/or changes in a scratch org",
@@ -6787,6 +6857,7 @@
       "longDescription": "Use the alias commands to manage username aliases.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:alias",
@@ -6797,6 +6868,7 @@
       "longDescription": "Use the apex commands to create Apex classes, execute anonymous blocks, view your logs, run Apex tests, and view Apex test results.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:apex",
@@ -6807,6 +6879,7 @@
       "longDescription": "Use the auth commands to authorize a Salesforce org for use with the Salesforce CLI.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:auth",
@@ -6817,6 +6890,7 @@
       "longDescription": "Use the config commands to view and set your Salesforce CLI configuration values. Set your default Dev Hub and scratch org, and your default instance URL, either globally or at the project level.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:config",
@@ -6827,6 +6901,7 @@
       "longDescription": "Use the data commands to manipulate records in your org. Commands are available to help you work with various APIs. Import CSV files with the Bulk API. Export and import data that includes master-detail relationships with the SObject Tree Save API. Perform simple CRUD operations on individual records with the REST API.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:data",
@@ -6837,6 +6912,7 @@
       "longDescription": "Use the doc commands to display descriptions and help for commands in the force namespace.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:doc",
@@ -6847,6 +6923,7 @@
       "longDescription": "Use the lightning commands to create and test Lightning component bundles.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:lightning",
@@ -6857,6 +6934,7 @@
       "longDescription": "Use the limits commands to view your org’s limits and how close you are to reaching them.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:limits",
@@ -6864,9 +6942,10 @@
     },
     {
       "description": "retrieve and deploy metadata using Metadata API",
-      "longDescription": "Use the mdapi commands to retrieve and deploy Metadata API–formatted files that represent components in an org or to convert Metadata API–formatted source into the format used in Salesforce DX projects.",
+      "longDescription": "Use the mdapi commands to retrieve and deploy Metadata API–formatted files that represent components in an org, or to convert Metadata API–formatted metadata into the source format used in Salesforce DX projects.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:mdapi",
@@ -6877,6 +6956,7 @@
       "longDescription": "Use the org commands to manage the orgs you use with Salesforce DX. Create and delete scratch orgs, list your created and authorized orgs, and open orgs in your browser.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:org",
@@ -6887,6 +6967,7 @@
       "longDescription": "Use the package commands to install and uninstall first- and second-generation packages.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:package",
@@ -6897,6 +6978,7 @@
       "longDescription": "Use the package1 commands to create and view first-generation package versions in your Dev Hub org.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:package1",
@@ -6907,6 +6989,7 @@
       "longDescription": "Use the package2 commands to create, install, and manage second-generation packages.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:package2",
@@ -6917,6 +7000,7 @@
       "longDescription": "Use the project commands to set up a project in the Salesforce DX format.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:project",
@@ -6927,6 +7011,7 @@
       "longDescription": "Use the schema commands to view the metadata for the standard and custom objects in your org.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:schema",
@@ -6937,6 +7022,7 @@
       "longDescription": "Use the source commands to push and pull source to and from your scratch orgs, to see synchronization changes between your project and scratch orgs, and to prepare your source for deployment to non-scratch orgs.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:source",
@@ -6947,6 +7033,7 @@
       "longDescription": "Use the user commands to perform user-related admin tasks.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:user",
@@ -6957,6 +7044,7 @@
       "longDescription": "Use the visualforce commands to create Visualforce pages and components.",
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "mainTopic": true,
       "topic": "force:visualforce",
@@ -7009,6 +7097,7 @@
       "mainTopic": true,
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "topic": "force:apex",
       "usage": "force:apex:COMMAND [command-specific-options]"
@@ -7017,6 +7106,7 @@
       "mainTopic": true,
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "topic": "force:visualforce",
       "usage": "force:visualforce:COMMAND [command-specific-options]"
@@ -7025,6 +7115,7 @@
       "mainTopic": true,
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "topic": "force:lightning",
       "usage": "force:lightning:COMMAND [command-specific-options]"
@@ -7033,6 +7124,7 @@
       "mainTopic": true,
       "requiresProject": false,
       "supportsTargetUsername": false,
+      "supportsPerfLogLevelFlag": false,
       "hidden": true,
       "topic": "force:project",
       "usage": "force:project:COMMAND [command-specific-options]"
