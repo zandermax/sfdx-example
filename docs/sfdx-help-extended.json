@@ -2844,6 +2844,176 @@
       "usage": "force:apex:log:list [-u <string>] [--json] [--loglevel <string>]"
     },
     {
+      "description": "log out from authorized orgs",
+      "longDescription": "Logs you out from one or all of your authorized Salesforce orgs.",
+      "help": "By default, this command logs you out from your default scratch org.\nExamples:\n   $ sfdx force:auth:logout -u me@my.org\n   $ sfdx force:auth:logout -a\n   $ sfdx force:auth:logout -p",
+      "requiresProject": false,
+      "requiresUsername": false,
+      "supportsTargetUsername": true,
+      "flags": [
+        {
+          "name": "all",
+          "char": "a",
+          "description": "include all authenticated orgs",
+          "longDescription": "Includes all authenticated orgs: for example, Dev Hubs, sandboxes, DE orgs, and expired, deleted, and unknown-status scratch orgs.",
+          "hasValue": false,
+          "required": false,
+          "type": "flag"
+        },
+        {
+          "name": "noprompt",
+          "char": "p",
+          "description": "do not prompt for confirmation",
+          "longDescription": "Do not prompt for confirmation.",
+          "hasValue": false,
+          "required": false,
+          "type": "flag"
+        },
+        {
+          "name": "targetusername",
+          "char": "u",
+          "description": "username or alias for the target org; overrides default target org",
+          "longDescription": "A username or alias for the target org. Overrides the default target org.",
+          "hasValue": true,
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "json",
+          "description": "format output as json",
+          "longDescription": "Format output as JSON.",
+          "hasValue": false,
+          "hidden": false,
+          "required": false,
+          "type": "flag"
+        },
+        {
+          "name": "loglevel",
+          "description": "logging level for this command invocation (error*,trace,debug,info,warn,fatal)",
+          "longDescription": "The logging level for this command invocation. Logs are stored in $HOME/.sfdx/sfdx.log.",
+          "hasValue": true,
+          "hidden": false,
+          "required": false,
+          "values": [
+            "trace",
+            "debug",
+            "info",
+            "warn",
+            "error",
+            "fatal"
+          ],
+          "default": "error",
+          "type": "string"
+        }
+      ],
+      "command": "logout",
+      "topic": "force:auth",
+      "supportsTargetDevHubUsername": false,
+      "usage": "force:auth:logout [-a] [-p] [-u <string>] [--json] [--loglevel <string>]"
+    },
+    {
+      "command": "lwc:create",
+      "description": "create an LWC bundle",
+      "longDescription": "Creates an LWC bundle in the specified directory or the current working directory. The bundle consists of multiple files in a folder with the designated name.",
+      "help": "If not supplied, the apiversion, template, and outputdir use default values.\nThe outputdir can be an absolute path or relative to the current working directory.\n\nExamples:\n   $ sfdx force:lightning:lwc:create -n mylwc\n   $ sfdx force:lightning:lwc:create -n mylwc -d lwc \n",
+      "hidden": true,
+      "args": [],
+      "flags": [
+        {
+          "name": "lwcname",
+          "char": "n",
+          "hasValue": true,
+          "required": true,
+          "description": "name of the generated LWC bundle",
+          "longDescription": "The LWC bundle name. The name can be up to 40 characters and must start with a letter.",
+          "type": "string",
+          "values": []
+        },
+        {
+          "name": "template",
+          "char": "t",
+          "hasValue": true,
+          "required": false,
+          "description": "template to use for file creation (DefaultLightningLWC*)",
+          "longDescription": "The template to use to create the file. Supplied parameter values or default values are filled into a copy of the template.",
+          "type": "string",
+          "values": [
+            "DefaultLightningLWC"
+          ],
+          "default": "DefaultLightningLWC"
+        },
+        {
+          "name": "outputdir",
+          "char": "d",
+          "hasValue": true,
+          "required": false,
+          "description": "folder for saving the created files",
+          "longDescription": "The directory to store the newly created files. The location can be an absolute path or relative to the current working directory. The default is the current directory.",
+          "type": "string",
+          "values": []
+        },
+        {
+          "name": "reflect",
+          "char": "r",
+          "hasValue": false,
+          "required": false,
+          "hidden": true,
+          "description": "switch to return flag detailed information",
+          "longDescription": "Return reflection description of the command, options, and possible values. Allows IDE to tailor to the capabilities of the command",
+          "type": "string",
+          "values": []
+        },
+        {
+          "name": "apiversion",
+          "char": "a",
+          "hasValue": true,
+          "required": false,
+          "description": "API version number (42.0*,41.0)",
+          "longDescription": "The API version of the created source.",
+          "type": "string",
+          "values": [
+            "42.0",
+            "41.0"
+          ],
+          "default": "42.0"
+        },
+        {
+          "name": "json",
+          "description": "JSON output",
+          "longDescription": "Formats output as JSON.",
+          "hasValue": false,
+          "hidden": false,
+          "required": false,
+          "type": "string",
+          "values": []
+        },
+        {
+          "name": "loglevel",
+          "description": "logging level for this command invocation (error*,trace,debug,info,warn,fatal)",
+          "longDescription": "The logging level for this command invocation. Logs are stored in $HOME/.sfdx/sfdx.log.",
+          "hasValue": true,
+          "hidden": false,
+          "required": false,
+          "values": [
+            "trace",
+            "debug",
+            "info",
+            "warn",
+            "error",
+            "fatal"
+          ],
+          "default": "error",
+          "type": "string"
+        }
+      ],
+      "supportedGlobals": [],
+      "requiresProject": false,
+      "topic": "force:lightning",
+      "supportsTargetUsername": false,
+      "supportsTargetDevHubUsername": false,
+      "usage": "force:lightning:lwc:create -n <string> [-t <string>] [-d <string>] [-a <string>] [--json] [--loglevel <string>]"
+    },
+    {
       "description": "open an org in your browser",
       "longDescription": "Opens an org in your browser.",
       "help": "Opens your default scratch org, or another org that you specify.\n\nTo open a specific page, specify the portion of the URL after \"yourInstance.salesforce.com/\" as --path. \nFor example, specify \"--path one/one.app\" to open Lightning Experience, or specify \"--path /apex/YourPage\" to open a Visualforce page.\n\nTo generate a URL but not launch your browser, specify --urlonly.\n\nExamples:\n  $ sfdx force:org:open\n  $ sfdx force:org:open -u me@my.org\n  $ sfdx force:org:open -u MyTestOrg1\n  $ sfdx force:org:open -r -p one/one.app",
