@@ -9,6 +9,7 @@
   force:apex:test:run                # invoke Apex tests
   force:apex:trigger:create          # create an Apex trigger
   force:auth:jwt:grant               # authorize an org using the JWT flow
+  force:auth:logout                  # log out from authorized orgs
   force:auth:sfdxurl:store           # authorize an org using an SFDX auth URL
   force:auth:web:login               # authorize an org using the web login flow
   force:config:get                   # get config var values for given names
@@ -31,11 +32,12 @@
   force:lightning:event:create       # create a Lightning event
   force:lightning:interface:create   # create a Lightning interface
   force:lightning:lint               # analyse (lint) Lightning component code
+  force:lightning:lwc:create         # create an LWC bundle
   force:lightning:test:create        # create a Lightning test
   force:lightning:test:install       # install Lightning Testing Service unmanaged package in your org
   force:lightning:test:run           # invoke Lightning component tests
   force:limits:api:display           # display current org’s limits
-  force:mdapi:convert                # convert Metadata API source into the Salesforce DX source format
+  force:mdapi:convert                # convert metadata from the Metadata API format into the Salesforce DX format
   force:mdapi:deploy                 # deploy metadata to an org using Metadata API
   force:mdapi:deploy:report          # check the status of a metadata deployment
   force:mdapi:retrieve               # retrieve metadata from an org using Metadata API
