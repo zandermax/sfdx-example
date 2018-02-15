@@ -6207,7 +6207,7 @@
       "topic": "force:package2",
       "requiresProject": true,
       "supportsTargetUsername": false,
-      "usage": "force:package2:version:create [-i <id>] [-d <directory>] [-b <string>] [-t <string>] [-k <string>] [-w <minutes>] [-v <string>] [--json] [--loglevel <string>]"
+      "usage": "force:package2:version:create [-i <id>] [-d <directory>] [-b <string>] [-t <string>] [-k <string>] [-w <minutes>] [-s <string>] [-v <string>] [--json] [--loglevel <string>]"
     },
     {
       "description": "retrieve the status of a package version creation request",
