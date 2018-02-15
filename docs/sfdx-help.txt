@@ -322,7 +322,7 @@ create a second-generation package
 Flags:
  -o, --containeroptions CONTAINEROPTIONS          [*Managed | Unlocked | Locked]
                                                   container options for the
-                                                  package
+                                                  package2
                                                   (Managed=DeveloperManagedSubscriberManaged,
                                                   Unlocked=DeveloperControlledSubscriberEditable,
                                                   Locked=DeveloperControlledSubscriberLocked)
